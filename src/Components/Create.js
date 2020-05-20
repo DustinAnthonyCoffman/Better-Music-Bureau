@@ -74,11 +74,44 @@ export default class Create extends Component {
     render() {
         return (
             <div style={{marginTop: 20}}>
-                      <Jumbotron className='text-center'>
-                <h2>Create</h2>
-            </Jumbotron>
+                <Jumbotron className='text-center'>
+                    <h2>Create</h2>
+                </Jumbotron>
                 <h3>Create New Review</h3>
+
                 <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <label>Title:</label>
+                        <input type="text"
+                                className="form-control"
+                                value={this.state.title}
+                                onChange={this.onChangeTitle}
+                                />
+                    </div>
+                    <div className="form-group">
+                        <label>Release Date:</label>
+                        <input type="text"
+                                className="form-control"
+                                value={this.state.releaseDate}
+                                onChange={this.onChangeReleaseDate}
+                                />
+                    </div>
+                    <div className="form-group">
+                        <label>Rating:</label>
+                        <input type="text"
+                                className="form-control"
+                                value={this.state.rating}
+                                onChange={this.onChangeRating}
+                                />
+                    </div>
+                    <div className="form-group">
+                        <label>Artist:</label>
+                        <input type="text"
+                                className="form-control"
+                                value={this.state.artist}
+                                onChange={this.onChangeArtist}
+                                />
+                    </div>
                     <div className="form-group">
                         <label>Review:</label>
                         <input type="text"
@@ -86,6 +119,9 @@ export default class Create extends Component {
                                 value={this.state.review}
                                 onChange={this.onChangeReview}
                                 />
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" className="btn btn-primary" value="Create Review" />
                     </div>
                 </form>
             </div>
