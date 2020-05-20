@@ -3,6 +3,9 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
+//connect to the database with Mongoose
+require('./config/database');
+
 const app = express();
 
 app.use(logger('dev'));
