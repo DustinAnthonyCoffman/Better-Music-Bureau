@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import { Jumbotron } from 'react-bootstrap';
 
 
@@ -52,18 +53,25 @@ export default class Create extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
-        
-        //submition logic, WE WILL DO THIS LATER!!!!!!!!!
-
-
         console.log(`Form submitted:`);
         console.log(`Review title: ${this.state.title}`);
         console.log(`Review release date: ${this.state.releaseDate}`);
         console.log(`Review rating: ${this.state.rating}`);
         console.log(`Review artist: ${this.state.artist}`);
         console.log(`Review: ${this.state.review}`);
+
+        const newReview = {
+            title: this.state.title,
+            releaseDate: this.state.releaseDate,
+            rating: this.state.rating,
+            artist: this.state.artist,
+            review: this.state.review
+        }
+
+        axios.post('http://3001/reviews/add', newReview)
+            .then(res => console.log(res.data));
         
-        this.setState({
+            this.setState({
             title: '',
             releaseDate: 0,
             rating: 0,
