@@ -25,7 +25,7 @@ export default class Reviews extends Component {
         this.state = {reviews: []};
     }
     componentDidMount() {
-        axios.get('http://localhost:3001/reviews/')
+        axios.get('http://localhost:4000/reviews/')
             .then(response => {
                 this.setState({reviews: response.data});
             })

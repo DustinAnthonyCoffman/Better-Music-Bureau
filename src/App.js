@@ -42,13 +42,13 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <Container className='container-fluid'>
-          <Switch>
+          <Router>
             <Route exact path="/" component={Reviews}/>
             <Route path="/edit/:id" component={Edit}/>
             <Route path="/create" component={Create}/>
             <Route path="/about" component={About}/>
             <Route path="/contact" component={Contact}/>
-          </Switch>
+          </Router>
       </Container>
       </>
     )

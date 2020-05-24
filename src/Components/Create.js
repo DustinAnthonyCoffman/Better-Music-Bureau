@@ -68,9 +68,8 @@ export default class Create extends Component {
             review: this.state.review
         }
 
-        axios.post('http://3001/reviews/add', newReview)
+        axios.post('http://localhost:4000/reviews/add', newReview)
             .then(res => console.log(res.data));
-        
             this.setState({
             title: '',
             releaseDate: 0,
