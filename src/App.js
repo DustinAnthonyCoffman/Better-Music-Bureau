@@ -49,17 +49,6 @@ class App extends Component {
             <Route path="/about" component={About}/>
             <Route path="/contact" component={Contact}/>
           </Switch>
-        <Row>
-          <Col>
-            <h1>Hey</h1>
-          </Col>
-          <Col>
-            <h1>Hey</h1>
-          </Col>
-          <Col>
-            <h1>Hey</h1>
-          </Col>
-        </Row>
       </Container>
       </>
     )
