@@ -34,16 +34,26 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const password: string = data.password
     const confirmPassword: string = data.confirmPassword
     console.log('data', data)
-    const res = await axios.post('/test', {
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword
-    }).then(function(res) {
-        console.log(res)
-    }).catch(function (error) {
-        console.log(error)
+        // const res = await axios.post('http://localhost:8080/signup', {
+    //     email: email,
+    //     password: password
+    // }).then(function(res) {
+    //     console.log(res)
+    // }).catch(function (error) {
+    //     console.log(error)
+    //     console.log('ah shit heres the error', error)
+    // })
+    const response = await fetch('http://localhost:8080/signup', {
+        method: 'POST', 
+        mode: 'cors',
+        cache: 'no-cache', 
+        credentials: 'same-origin', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email: email, password: password})
     })
-        console.log(res)
+    console.log('the response', response)
 } 
 
     return (
