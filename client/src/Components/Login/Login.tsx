@@ -10,14 +10,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from 'yup'
 import axios from 'axios'
 import { Inputs } from '../../Interfaces/interfaces'
-import './signup.css'
-import { useNavigate, Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
 
 
-export const Signup = () => {
+export const Login = () => {
     //TODO
     // const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
     //     resolver: yupResolver(schema),
@@ -36,41 +35,16 @@ const schema = yup.object().shape({
 const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const email: string = data.email
     const password: string = data.password
-    console.log('before we fetch', data)
-    // const response = await axios.post('http://localhost:8080/signup', {
-    //     email: email,
-    //     password: password
-    //     }).then(function(res) {
-    //         if(res.status === 201) {
-    //             console.log('heres the res', res)
-    //             navigate('/')
-    //         }
-    //     }).catch(function (error) {
-    //         console.log(error)
-    //     })
-
-    try {
-        const res = await fetch('http://localhost:8080/signup', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include' //necessary for the jwt to be passed to browser!
-        });
-        //what we get back from the controller res.status(201).json({user: user._id})
-        const data = await res.json();
-        if(data.errors) {
-            console.log(data.errors)
-        }
-        //if data response from controller has a user property then its success, send user to homepage
-        if(data.user) {
-            navigate('/')
-        }
-    }
-    catch (err) {
-        console.log(err);
-    }
-
-
+    const response = await axios.post('http://localhost:8080/login', {
+        email: email,
+        password: password
+        }).then(function(res) {
+            if(res.status === 201) {
+                    navigate('/')
+            }
+        }).catch(function (error) {
+            console.log('ah hell heres the error', error)
+        })
 } 
 
     return (
@@ -98,23 +72,15 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={5}>
-                                <Form.Label htmlFor='password'>Confirm Password</Form.Label>
-                            </Col>
-                            <Col xs={5}>
-                                <input className='mb-4' type='password' {...register('confirmPassword', {required: true })} {...register} />
-                            </Col>
-                        </Row>
-                        <Row>
                             <Col xs={12}>
-                                <Button type='submit' variant='primary'>Sign Up</Button>
+                                <Button type='submit' variant='primary'>Login In</Button>
                             </Col>
                             <>{errors.confirmPassword && "Passwords Should Match"}</>
                         </Row>
                     </Form>
                     <Row>
                         <Col xs={12}>
-                            <Link to='/login'>Login</Link>
+                            <Link to='/signup'>Signup</Link>
                         </Col>
                     </Row>
                 </Card.Body>

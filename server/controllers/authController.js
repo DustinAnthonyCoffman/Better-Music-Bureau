@@ -40,6 +40,7 @@ const handleErrors = (err) => {
 }
 
 exports.signup_post = async (req, res) => {
+    console.log('do we make it to the controller?')
     const {email, password} = req.body;
 
     try {
@@ -52,4 +53,25 @@ exports.signup_post = async (req, res) => {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
+}
+
+exports.login_post = async (req, res) => {
+    console.log('are we hitting this correclty?')
+    const {email, password} = req.body;
+
+    try {
+        const user = await User.login(email, password);
+        const token = createToken(user._id);
+        res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000 })
+        res.status(200).json({ user: user._id })
+    }
+    catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+
+module.exports.login_get = (req, res) => {
+    res.render('login');
 }

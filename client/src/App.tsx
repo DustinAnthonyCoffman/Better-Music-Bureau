@@ -1,36 +1,39 @@
-import React from 'react'
+import React, {useRef} from 'react'
+import {Navigation} from './Components/Navigation/Navigation'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Home} from './Pages/Home'
+import {About} from './Pages/About'
+import {Contact} from './Pages/Contact'
+import {NotFound} from './Pages/NotFound'
+import {Reviews} from './Components/Reviews/Reviews'
 
 //components
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {Login} from './Components/Login/Login'
 import {Signup} from './Components/Signup/Signup'
 
 function App() {
-  // const [data, setData] = useState('Better Music Bureau')
+  //we must pull the cookie from the json response, NOT STATICALLY DEFINE IT
+  //if cookie, login automatically else no cookie render signup/login
+  //if cookie exists just show the homescreen
   
-  // const getTest = async () => {
-  //   try {
-  //     const res = await fetch('http://localhost:8080/test', {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     })
-  //     return await res.json()
-  //   } catch(err) {}
-  // }
-
-  // useEffect(() => {
-  //   getTest().then((res) => {
-  //     setData(res.message)
-  //   }).catch((error) => console.log(error))
-  // },[])
-
+  const cookie = useRef<boolean>(false)
   return (
-    <div className="App">
-      <Signup />
-    </div>
+    <>
+      <BrowserRouter>
+        <Navigation />
+      
+        <Routes>
+            <Route path='/' element={cookie.current ? <Home /> :  <Signup />}/>
+            <Route path='/login' element={<Login />}/>
+            <Route path='/signup' element={<Signup />}/>
+            <Route path='about' element={<About />}/>
+            <Route path='contact' element={<Contact />}/>
+            <Route path='*' element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
@@ -39,11 +42,5 @@ export default App;
 
 /* todo list
 integrate react type checking with prop types
-push from signup component 
 integrate json web token for login
-
-
-
-
-
 */
