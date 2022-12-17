@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const {requireAuth, checkuser} = require('./middleware/authMiddleware')
-const userRoutes = require('./routes/userRoutes')
+const adminRoutes = require('./routes/adminRoutes')
+const routes = require('./routes/routes')
 
 
 //app
@@ -33,7 +34,8 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/user', userRoutes)
+app.use('/api/user', adminRoutes)
+app.use('/api/review', routes)
 
 //port
 const port = process.env.PORT || 8080
