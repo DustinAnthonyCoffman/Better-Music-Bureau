@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const maxAge = 3 * 24 * 60 * 60;
 
 
-const createToken = (id) => {
-    return jwt.sign({ id }, 'my super secret', {
+const createToken = (_id) => {
+    return jwt.sign({ _id }, process.env.SECRET, {
         expiresIn: maxAge
     })
 }
@@ -40,14 +40,13 @@ const handleErrors = (err) => {
 }
 
 exports.signup_post = async (req, res) => {
-    console.log('do we make it to the controller?')
     const {email, password} = req.body;
-
     try {
-        const user = await User.create({email, password});
+        // const user = await User.create({email, password});
+        const user = await User.signup(email, password);
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
-        res.status(201).json({user: user._id})
+        res.status(200).json({email, token})
     }
     catch(err) {
         const errors = handleErrors(err);
@@ -56,7 +55,6 @@ exports.signup_post = async (req, res) => {
 }
 
 exports.login_post = async (req, res) => {
-    console.log('are we hitting this correclty?')
     const {email, password} = req.body;
 
     try {
@@ -69,9 +67,4 @@ exports.login_post = async (req, res) => {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
-}
-
-
-module.exports.login_get = (req, res) => {
-    res.render('login');
 }

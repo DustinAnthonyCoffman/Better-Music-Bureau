@@ -1,24 +1,22 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const requireAuth = (req, res, next) => {
-    //grab users cookie if it exists
-    //proceed to next middleware function in router if good, else redirect to login
-    const token = req.cookies.jwt;
-    
-    if (token) {
-        jwt.verify(token, 'my super secret', (err, decodedToken) => {
-            if (err) {
-                console.log(err.message);
-                res.redirect('/');
-            } else {
-                console.log(decodedToken);
-                next()
-            }
-        })
+const requireAuth = async (req, res, next) => {
+    const {authorization} = req.headers
+    if(!authorization) {
+        return res.status(401).json({error: 'Authorization token required'})
     }
-    else {
-        res.redirect('/');
+    //the token must be obtained by splitting the part we need
+    //'Bearer 3i2nrw9nfs9eufns.3435adsfjsnjsdfn.34932ef'
+    const token = authorization.split(' ')[1]
+
+    try {
+        const {_id} = jwt.verify(token, process.env.SECRET)
+        req.user = await User.findOne({_id}).select('_id')
+        next()
+    } catch(err) {
+        console.log('error verifying token', err)
+        res.status(401).json({error: 'Request is not authorized'})
     }
 }
 

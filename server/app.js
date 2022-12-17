@@ -2,14 +2,12 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const routes = require('./routes/routes')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const {requireAuth, checkuser} = require('./middleware/authMiddleware')
+const userRoutes = require('./routes/userRoutes')
 
-//WE MAY NEED TO USE BODY PARSER??
-// var bodyParser = require('body-parser')
 
 //app
 const app = express()
@@ -29,10 +27,13 @@ app.use(express.urlencoded()) //needed for sending json POSTS
 app.use(cookieParser())
 
 //routes
-app.use('/', routes)
-app.get('*',(req, res) => {
-    checkuser   
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
 })
+
+// routes
+app.use('/api/user', userRoutes)
 
 //port
 const port = process.env.PORT || 8080
