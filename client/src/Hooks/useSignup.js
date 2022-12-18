@@ -9,12 +9,14 @@ export const useSignup = () => {
     const signup = async (email, password) => {
         setIsLoading(true)
         setError(null)
-
-        const response = await fetch('http://localhost:8080/api/user/signup', {
+        console.log('WHWAT')
+        console.log('WHWAT')
+        console.log('WHWAT')
+        console.log('WHWAT')
+        const response = await fetch('http://localhost:8080/api/auth/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password}),
-            credentials: 'include' //necessary for the jwt to be passed to browser!
+            body: JSON.stringify({email, password})
         })
         const json = await response.json()
         console.log('json web token', json)

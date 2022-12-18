@@ -5,6 +5,7 @@ const requireAuth = async (req, res, next) => {
     console.log('is this the issue???')
     console.log('is this the issue???')
     console.log('is this the issue???')
+    console.log('WHOLE ASS REQ OBJECT', req)
     const {authorization} = req.headers
     console.log('authorization headers', authorization)
     if(!authorization) {

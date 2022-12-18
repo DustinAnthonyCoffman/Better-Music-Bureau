@@ -8,10 +8,20 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button'
+
+import { useAuthContext } from '../../Hooks/useAuthContext';
+import { useLogout } from '../../Hooks/useLogout';
+
 
 
 export const Navigation = () => {
+    const {logout} = useLogout()
+    const {user} = useAuthContext()
     const coffee = <FontAwesomeIcon icon={faCoffee} />
+    const handleClick = () => {
+        logout()
+    }
   return (
         <>
             <header>
@@ -39,11 +49,25 @@ export const Navigation = () => {
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                 </NavDropdown>
+                                <div>
+                                    {user && (
+                                        <div>
+                                            <span>{user.email}</span>
+                                            <button onClick={handleClick}>Log out</button>
+                                        </div>
+                                    )}
+                                    {!user && (
+                                        <div>
+                                        <NavLink to="/login">Login</NavLink>
+                                        <NavLink to="/signup">Signup</NavLink>
+                                        </div>
+                                    )}
+                                </div>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
             </header>
         </>
-  )
+    )
 }

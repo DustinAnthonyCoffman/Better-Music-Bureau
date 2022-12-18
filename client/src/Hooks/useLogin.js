@@ -10,12 +10,10 @@ export const useLogin = () => {
     setIsLoading(true)
     setError(null)
 
-    const response = await fetch('/api/user/login', {
+    const response = await fetch('http://localhost:8080/api/auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, password }),
-      credentials: 'include' //necessary for the jwt to be passed to browser!
-
+      body: JSON.stringify({ email, password })
     })
     const json = await response.json()
 

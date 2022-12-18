@@ -11,6 +11,7 @@ import * as yup from 'yup'
 import axios from 'axios'
 import { Inputs } from '../../Interfaces/interfaces'
 import { useNavigate, Link } from 'react-router-dom';
+import {useLogin} from '../../Hooks/useLogin'
 
 
 
@@ -21,10 +22,10 @@ export const Login = () => {
     // const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
     //     resolver: yupResolver(schema),
     // })
+const {login, error, isLoading} = useLogin()
 
 const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 const navigate = useNavigate()
-const signedUp = useRef<boolean>(false)
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -35,16 +36,7 @@ const schema = yup.object().shape({
 const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const email: string = data.email
     const password: string = data.password
-    const response = await axios.post('http://localhost:8080/api/user/login', {
-        email: email,
-        password: password
-        }).then(function(res) {
-            if(res.status === 201) {
-                    navigate('/')
-            }
-        }).catch(function (error) {
-            console.log('ah hell heres the error', error)
-        })
+    await login(email, password)
 } 
 
     return (
@@ -73,10 +65,11 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                         </Row>
                         <Row>
                             <Col xs={12}>
-                                <Button type='submit' variant='primary'>Login In</Button>
+                                <Button type='submit' variant='primary'>Login</Button>
                             </Col>
                             <>{errors.confirmPassword && "Passwords Should Match"}</>
                         </Row>
+                        {error && <div className="error">{error}</div>}
                     </Form>
                     <Row>
                         <Col xs={12}>

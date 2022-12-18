@@ -5,7 +5,13 @@ const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+//all CRUD related routes to an admin
 const adminRoutes = require('./routes/adminRoutes')
+
+//signup and login
+const authRoutes = require('./routes/authRoutes')
+
+//normal get and get all routes for every user
 const routes = require('./routes/routes')
 
 
@@ -33,7 +39,8 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/user', adminRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/admin', adminRoutes)
 app.use('/api/review', routes)
 
 //port
