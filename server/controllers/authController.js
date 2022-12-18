@@ -40,6 +40,7 @@ const handleErrors = (err) => {
 }
 
 exports.signup_post = async (req, res) => {
+    console.log('did we make it to the controller?')
     const {email, password} = req.body;
     try {
         // const user = await User.create({email, password});

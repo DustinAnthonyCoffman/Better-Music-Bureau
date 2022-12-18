@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
-const {requireAuth, checkuser} = require('./middleware/authMiddleware')
 const adminRoutes = require('./routes/adminRoutes')
 const routes = require('./routes/routes')
 

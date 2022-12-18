@@ -35,7 +35,7 @@ const schema = yup.object().shape({
 const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const email: string = data.email
     const password: string = data.password
-    const response = await axios.post('http://localhost:8080/login', {
+    const response = await axios.post('http://localhost:8080/api/user/login', {
         email: email,
         password: password
         }).then(function(res) {

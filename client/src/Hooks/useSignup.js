@@ -3,19 +3,18 @@ import {useAuthContext} from './useAuthContext'
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
-    const [isLoading, setIsLoading] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
     const {dispatch} = useAuthContext()
 
     const signup = async (email, password) => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('/api/user/signup', {
+        const response = await fetch('http://localhost:8080/api/user/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password}),
             credentials: 'include' //necessary for the jwt to be passed to browser!
-
         })
         const json = await response.json()
         console.log('json web token', json)
