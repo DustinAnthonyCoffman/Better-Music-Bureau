@@ -1,18 +1,15 @@
-import React from 'react'
+//components
+import {Container, Nav, Navbar, NavDropdown, Button} from 'react-bootstrap'
+import { NavLink} from 'react-router-dom';
 
-import { NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from 'react-bootstrap/Button'
-
+//hooks
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import { useLogout } from '../../Hooks/useLogout';
 
+
+//dependencies
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Navigation = () => {
@@ -22,13 +19,13 @@ export const Navigation = () => {
     const handleClick = () => {
         logout()
     }
-  return (
+    return (
         <>
             <header>
-                <Navbar bg="light" expand="lg">
+                <Navbar bg='light' expand='lg'>
                     <Container>
                         <Navbar.Brand>
-                            <NavLink to='/'> {coffee} Better Music Bureau</NavLink>
+                        <NavLink to='/'>Better Music Bureau {coffee}</NavLink>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -42,13 +39,19 @@ export const Navigation = () => {
                                 <NavLink to='contact' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
                                     Contact
                                 </NavLink>
-                                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                </NavDropdown>
+                                <NavLink to='reviews' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
+                                    Reviews
+                                </NavLink>
+                                <div>
+                                    {user && (
+                                        <NavDropdown title="Admin" id="basic-nav-dropdown">
+                                            <NavLink to='adminReviews'>My Reviews</NavLink>
+                                            <NavLink to='createReview'>Create Review</NavLink>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="#action/3.4">Credits</NavDropdown.Item>
+                                        </NavDropdown>
+                                    )}
+                                </div>
                                 <div>
                                     {user && (
                                         <div>

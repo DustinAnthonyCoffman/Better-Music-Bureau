@@ -6,11 +6,13 @@ const router = express.Router()
 // router.use(requireAuth)
 
 //controllers
-const { getReview, createReview, deleteReview, updateReview } = require('../controllers/reviewsController')
-
+const { getReviews, createReview, deleteReview, updateReview } = require('../controllers/reviewsController')
 
 //CRUD reviews routes
-router.get('/', getReview)
+//INSTEAD OF FILTERING ALL REVIEWS CLIENT SIDE, MAYBE USE A REVIEW.find({}).sort ON THE CONTROLLER REQUEST FOR THE API CALL IN ADMINREVIEW
+//router.get('/', getAdminReviews)
+// BUT IF ITS FASTER TO .FILTER ALL REVIEWS THEN KEEP IT THE WAY IT IS
+router.get('/', getReviews)
 router.post('/', createReview)
 router.delete('/:id', deleteReview)
 router.patch('/:id', updateReview)

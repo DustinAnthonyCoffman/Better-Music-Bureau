@@ -9,10 +9,6 @@ export const useSignup = () => {
     const signup = async (email, password) => {
         setIsLoading(true)
         setError(null)
-        console.log('WHWAT')
-        console.log('WHWAT')
-        console.log('WHWAT')
-        console.log('WHWAT')
         const response = await fetch('http://localhost:8080/api/auth/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

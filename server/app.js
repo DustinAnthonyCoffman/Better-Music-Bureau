@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/auth', authRoutes)
 app.use('/api/admin', adminRoutes)
-app.use('/api/review', routes)
+app.use('/api/reviews', routes)
 
 //port
 const port = process.env.PORT || 8080

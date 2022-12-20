@@ -1,9 +1,6 @@
 //components
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
+import {Col, Form, Button, Row, Card} from 'react-bootstrap'
+import {NavLink} from 'react-router-dom'
 
 //css
 import './signup.css'
@@ -14,7 +11,6 @@ import { Inputs } from '../../Interfaces/interfaces'
 //dependencies 
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from 'yup'
-import { useNavigate, Link} from 'react-router-dom';
 
 //hooks
 import { useSignup } from '../../Hooks/useSignup';
@@ -29,7 +25,6 @@ export const Signup = () => {
     // })
 
 const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-const navigate = useNavigate()
 const {signup, error, isLoading} = useSignup()
 
 const schema = yup.object().shape({
@@ -85,9 +80,10 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                         </Row>
                         {error && <div className="error">{error}</div>}
                     </Form>
-                    <Row>
-                        <Col xs={12}>
-                            <Link to='/login'>Login</Link>
+                    <Row className='pt-5'>
+                        <Col xs={3}>Already have an account?</Col>
+                        <Col xs={5}>
+                            <NavLink to='/login'>Login</NavLink>
                         </Col>
                     </Row>
                 </Card.Body>

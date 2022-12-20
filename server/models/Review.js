@@ -17,10 +17,10 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please submit the artist you are reviewing']
     },
-    user_id: {
+    userID: {
         type: String,
-        unique: true,
-        required: true
+        required: true,
+        unique: false
     }
 }, {timestamps: true});
 

@@ -1,7 +1,8 @@
 const Review = require('../models/Review');
 const mongoose = require('mongoose')
 
-// get a single review
+
+// get a single review might be something we add to the global because non-admins should be able to search for reviews too
 const getReview = async (req, res) => {
     const { id } = req.params
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -18,7 +19,7 @@ const getReview = async (req, res) => {
 //find all reviews
 const getReviews = async (req, res) => {
     try {
-        const reviews = await Review.find({});
+        const reviews = await Review.find({}).sort({createdAt: -1});
         res.status(200).json({reviews: reviews})
     }
     catch(err) {
@@ -29,10 +30,10 @@ const getReviews = async (req, res) => {
 
 //create review
 const createReview = async (req, res) => {
-    const {title, review, artist, user_id} = req.body
-
+    const {title, review, artist, userID} = req.body
+    
     let emptyFields = []
-
+    
     if(!title) {
         emptyFields.push('title')
     }
@@ -42,8 +43,8 @@ const createReview = async (req, res) => {
     if(!artist) {
         emptyFields.push('artist')
     }
-    if(!user_id) {
-        emptyFields.push('user_id')
+    if(!userID) {
+        emptyFields.push('userID')
     }
     if(emptyFields.length > 0) {
         return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
@@ -51,9 +52,8 @@ const createReview = async (req, res) => {
 
     // add doc to db
     try {
-        const user_id = req.user._id
-        const review = await Review.create({title, review, artist, user_id})
-        res.status(200).json(review)
+        const createdReview = await Review.create({title, review, artist, userID})
+        res.status(200).json(createdReview)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -63,6 +63,7 @@ const createReview = async (req, res) => {
 //delete review
 const deleteReview = async (req, res) => {
     const { id } = req.params
+    console.log('did we make it to the controller?', id)
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No review exists'})
@@ -73,7 +74,7 @@ const deleteReview = async (req, res) => {
     if (!review) {
         return res.status(400).json({error: 'No review exists'})
     }
-
+    console.log('REVIEW SUCCESSFULLY DELETED!!!')
     res.status(200).json(review)
 
 }

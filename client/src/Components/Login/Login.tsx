@@ -1,17 +1,17 @@
-import React from 'react'
-import {useRef, useEffect} from 'react'
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
 
-import { useForm, SubmitHandler } from "react-hook-form";
-import * as yup from 'yup'
-import axios from 'axios'
-import { Inputs } from '../../Interfaces/interfaces'
+//components
+import {Card, Row, Col, Button, Form} from 'react-bootstrap'
 import { useNavigate, Link } from 'react-router-dom';
+
+//hooks
+import { useForm, SubmitHandler } from "react-hook-form";
 import {useLogin} from '../../Hooks/useLogin'
+
+//dependencies
+import * as yup from 'yup'
+
+//interfaces
+import { Inputs } from '../../Interfaces/interfaces'
 
 
 
@@ -65,7 +65,7 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                         </Row>
                         <Row>
                             <Col xs={12}>
-                                <Button type='submit' variant='primary'>Login</Button>
+                                <Button type='submit' variant='primary' disabled={isLoading}>Login</Button>
                             </Col>
                             <>{errors.confirmPassword && "Passwords Should Match"}</>
                         </Row>

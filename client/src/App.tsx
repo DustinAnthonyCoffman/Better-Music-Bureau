@@ -1,33 +1,50 @@
-import {Navigation} from './Components/Navigation/Navigation'
+//css
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+//pages
 import {Home} from './Pages/Home'
 import {About} from './Pages/About'
 import {Contact} from './Pages/Contact'
 import {NotFound} from './Pages/NotFound'
-import {Reviews} from './Components/Reviews/Reviews'
+
 
 //components
+import {Navigation} from './Components/Navigation/Navigation'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {Login} from './Components/Login/Login'
 import {Signup} from './Components/Signup/Signup'
 import { useAuthContext } from './Hooks/useAuthContext'
+import { CreateReview } from './Components/Reviews/CreateReview';
+import {Reviews} from './Components/Reviews/Reviews'
+import {AdminReviews} from './Components/Reviews/AdminReviews'
 
 function App() {
 
   const { user } = useAuthContext()
 
+  const getUser = async () => {
+    const response = await fetch('http://localhost:8080/api/admin/', {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    })
+    const jsonresponse = await response.json()
+  console.log('response . josn', jsonresponse)
+}
+
   return (
     <>
       <BrowserRouter>
         <Navigation />
-      
         <Routes>
-            <Route path='/' element={user ? <Home/> : <Navigate to='/login'/>}/>
-            <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-            <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+            <Route path='/' element={<Home/>} />
+            <Route path="login" element={!user ? <Login /> : <Navigate to="/" />} />
+            <Route path="signup" element={!user ? <Signup /> : <Navigate to="/" />} />
             <Route path='about' element={<About />}/>
             <Route path='contact' element={<Contact />}/>
+            <Route path='reviews' element={<Reviews />}/>
+            <Route path='adminReviews' element={<AdminReviews />}/>
+            <Route path='createReview' element={!user ? <Signup /> : <CreateReview/>} />
             <Route path='*' element={<NotFound />}/>
         </Routes>
       </BrowserRouter>
@@ -38,7 +55,11 @@ function App() {
 export default App;
 
 
-/* todo list
+/* TODO LIST
+display any user or login failures in the browser
 integrate react type checking with prop types
-integrate json web token for login
+type check all previous JS files
+CRUD on reviews 
+style everything
+integrate json web token for login ?
 */
