@@ -15,6 +15,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {Login} from './Components/Login/Login'
 import {Signup} from './Components/Signup/Signup'
 import { useAuthContext } from './Hooks/useAuthContext'
+import { useReviewsContext } from './Hooks/useReviewsContext';
 import { CreateReview } from './Components/Reviews/CreateReview';
 import {Reviews} from './Components/Reviews/Reviews'
 import {AdminReviews} from './Components/Reviews/AdminReviews'
@@ -22,15 +23,6 @@ import {AdminReviews} from './Components/Reviews/AdminReviews'
 function App() {
 
   const { user } = useAuthContext()
-
-  const getUser = async () => {
-    const response = await fetch('http://localhost:8080/api/admin/', {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    })
-    const jsonresponse = await response.json()
-  console.log('response . josn', jsonresponse)
-}
 
   return (
     <>
@@ -56,6 +48,7 @@ export default App;
 
 
 /* TODO LIST
+refresh the page on a delete!!!
 display any user or login failures in the browser
 integrate react type checking with prop types
 type check all previous JS files

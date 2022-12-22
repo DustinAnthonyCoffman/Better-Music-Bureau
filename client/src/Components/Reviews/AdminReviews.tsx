@@ -27,11 +27,18 @@ export const AdminReviews = () => {
   }, [user])
   return (
     <>
-        <div className='reviews'>
-          {reviews.length > 0 && reviews.map((review: ReviewI) => (
-            <Review key={review._id} title={review.title} review={review.review} artist={review.artist} />
-          ) )}
-        </div>
+      <div className='reviews'>
+        {reviews.length > 0 && reviews.map((review: ReviewI) => (
+            <Review 
+              key={review._id} 
+              id={review._id} 
+              userID={review.userID} 
+              title={review.title} 
+              review={review.review} 
+              artist={review.artist} 
+            />
+        ) )}
+      </div>
     </>
   )
 }

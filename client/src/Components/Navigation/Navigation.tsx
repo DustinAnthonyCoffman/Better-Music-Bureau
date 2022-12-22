@@ -1,6 +1,7 @@
 //components
 import {Container, Nav, Navbar, NavDropdown, Button} from 'react-bootstrap'
 import { NavLink} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 //hooks
 import { useAuthContext } from '../../Hooks/useAuthContext';
@@ -16,8 +17,10 @@ export const Navigation = () => {
     const {logout} = useLogout()
     const {user} = useAuthContext()
     const coffee = <FontAwesomeIcon icon={faCoffee} />
+    const navigate = useNavigate()
     const handleClick = () => {
         logout()
+        navigate('/')
     }
     return (
         <>

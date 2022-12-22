@@ -26,6 +26,18 @@ export interface Inputs {
     key: string;
   }
 
+  export interface ReviewsI {
+    reviews: ReviewI[];
+  }
+  export interface ReviewsContextDispatch {
+    reviews: ReviewI[];
+    dispatch: React.Dispatch<any>;
+  }
+
+  export interface ReviewsContextProviderProps {
+    children: React.ReactNode
+}
+
   export interface DeleteReviewModalI {
     id: string;
     children?: React.ReactNode;
