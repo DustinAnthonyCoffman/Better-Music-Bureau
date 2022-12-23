@@ -31,7 +31,7 @@ const getReviews = async (req, res) => {
 //create review
 const createReview = async (req, res) => {
     const {title, review, artist, userID} = req.body
-    
+    console.log('heres the request body', req.body)
     let emptyFields = []
     
     if(!title) {

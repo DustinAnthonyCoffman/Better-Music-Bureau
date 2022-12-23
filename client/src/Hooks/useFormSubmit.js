@@ -1,8 +1,11 @@
 import {useState} from 'react'
 import {useAuthContext} from './useAuthContext'
+import { useReviewsContext } from './useReviewsContext'
 
 
 export const useFormSubmit = () => {
+    const {dispatch} = useReviewsContext()
+
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const {user} = useAuthContext()
@@ -19,12 +22,12 @@ export const useFormSubmit = () => {
             })
             const jsonResponse = await response.json()
             if(!response.ok) {
-                console.log('YOUR ERROR', jsonResponse.error)
                 setIsLoading(false)
                 setError(jsonResponse.error)
             }
             if(response.ok) {
                 setIsLoading(false)
+                dispatch({type: 'CREATE_REVIEW', payload: jsonResponse})
         }
         }
         else {

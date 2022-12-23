@@ -37,9 +37,9 @@ export const Review = (props: any) => {
 
     navigate('/')
   }
-  useEffect(() => {
-    handleDelete(id)
-  },[])
+  // useEffect(() => {
+  //   handleDelete(id)
+  // },[])
   return (
     <>
     {modal ?
