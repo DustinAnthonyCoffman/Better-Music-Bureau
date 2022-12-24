@@ -3,7 +3,7 @@
 import {Form, Col, Row, Button} from 'react-bootstrap'
 
 //interfaces
-import { CreateReviewInputs } from '../../Interfaces/interfaces'
+import { ReviewInputs } from '../../Interfaces/interfaces'
 
 //hooks
 import {useFormSubmit} from '../../Hooks/useFormSubmit'
@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const CreateReview = () => {
 
-const { register, handleSubmit, formState: { errors } } = useForm<CreateReviewInputs>();
+const { register, handleSubmit, formState: { errors } } = useForm<ReviewInputs>();
 const {createReview, error, isLoading} = useFormSubmit()
 const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const schema = yup.object().shape({
     artist: yup.string().required()
 })
 
-const onSubmit: SubmitHandler<CreateReviewInputs> = async (data) => {
+const onSubmit: SubmitHandler<ReviewInputs> = async (data) => {
     const title: string = data.title
     const review: string = data.review
     const artist: string = data.artist

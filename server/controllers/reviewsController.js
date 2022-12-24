@@ -17,6 +17,8 @@ const getReview = async (req, res) => {
 
 
 //find all reviews
+
+//USE THE CONTEXT API TO CALL THE STORE HERE
 const getReviews = async (req, res) => {
     try {
         const reviews = await Review.find({}).sort({createdAt: -1});
@@ -31,7 +33,6 @@ const getReviews = async (req, res) => {
 //create review
 const createReview = async (req, res) => {
     const {title, review, artist, userID} = req.body
-    console.log('heres the request body', req.body)
     let emptyFields = []
     
     if(!title) {
@@ -63,7 +64,6 @@ const createReview = async (req, res) => {
 //delete review
 const deleteReview = async (req, res) => {
     const { id } = req.params
-    console.log('did we make it to the controller?', id)
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No review exists'})
@@ -74,21 +74,21 @@ const deleteReview = async (req, res) => {
     if (!review) {
         return res.status(400).json({error: 'No review exists'})
     }
-    console.log('REVIEW SUCCESSFULLY DELETED!!!')
     res.status(200).json(review)
 
 }
 
 //update review
 const updateReview = async (req, res) => {
+    console.log('req params', req.params, 'and the body', req.body)
     const { id } = req.params
-
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No review exists'})
     }
 
+    //if this doesnt work try req.body.review
     const review = await Review.findOneAndUpdate({_id: id}, {
-        ...req.body
+        ...req.body.review
     })
 
     if (!review) {

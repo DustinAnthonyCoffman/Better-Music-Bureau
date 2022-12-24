@@ -15,7 +15,7 @@ const { getReviews, createReview, deleteReview, updateReview } = require('../con
 router.get('/', getReviews)
 router.post('/', createReview)
 router.delete('/:id', deleteReview)
-router.patch('/:id', updateReview)
+router.put('/:id', updateReview)
 
 
 module.exports = router;

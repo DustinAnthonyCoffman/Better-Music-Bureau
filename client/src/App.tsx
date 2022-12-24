@@ -48,11 +48,17 @@ export default App;
 
 
 /* TODO LIST
-refresh the page on a delete!!!
+make sure all review id's are _id on ReviewInputs
+Edit a review
+move get reviews context to App and pass it to Reviews and AdminReviews
 display any user or login failures in the browser
 integrate react type checking with prop types
 type check all previous JS files
 CRUD on reviews 
 style everything
-integrate json web token for login ?
+
+ICEBOX
+build a comment section for each review! 
+
+
 */

@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useReducer, PropsWithChildren, ReducerAction} from 'react'
+import {createContext, useReducer} from 'react'
 
 
 
@@ -10,13 +10,21 @@ export const ReviewsContext = createContext();
 //previous state of app, action w/ type and payload 
 //FUCKING FIX THIS CANNOT BE ANY
 export const reviewsReducer = (state, action) => {
-    //what do we want to do with state we determine the aciton type
+    //what do we want to do with state we determine the action type
     switch (action.type) {
         case 'SET_REVIEWS':
             return {
                 reviews: action.payload
             }
+        case 'SET_ADMIN_REVIEWS':
+            return {
+                reviews: action.payload
+            }
         case 'CREATE_REVIEW':
+            return {
+                reviews: [action.payload, ...state.reviews]
+            }
+        case 'EDIT_REVIEW':
             return {
                 reviews: [action.payload, ...state.reviews]
             }

@@ -33,8 +33,6 @@ export const useFormSubmit = () => {
         else {
             return
         }    
-
-
 }
     const deleteReview = async (id) => {
         setIsLoading(true)
@@ -51,10 +49,28 @@ export const useFormSubmit = () => {
         }
         if(response.ok) {
             setIsLoading(false)
+            dispatch({type: 'DELETE_REVIEW', payload: jsonResponse})
+            return jsonResponse
     }
 }
-    return {createReview, deleteReview, isLoading, error}
+    const editReview = async (review) => {
+        setIsLoading(true)
+        setError(null)
+        const response = await fetch(`http://localhost:8080/api/admin/${review.id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({review})
+        })
+        const jsonResponse = await response.json()
+        if(!response.ok) {
+            setIsLoading(false)
+            setError(jsonResponse.error)
+        }
+        if(response.ok) {
+            setIsLoading(false)
+            dispatch({type: 'EDIT_REVIEW', payload: jsonResponse})
+            return jsonResponse
+    }
 }
-
-
-//MOVE GET REVIEWS HERE!!!
+    return {createReview, deleteReview, editReview, isLoading, error}
+}

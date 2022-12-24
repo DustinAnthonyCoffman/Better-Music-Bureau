@@ -1,72 +1,55 @@
 
 //dependencies
-import {useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useState} from 'react'
 
 //components
 import {Col, Button, Row, Card} from 'react-bootstrap'
 
 //auth
 import {useAuthContext} from '../../Hooks/useAuthContext'
-import {useFormSubmit} from '../../Hooks/useFormSubmit'
 
 //modal
 import { DeleteReviewModal } from '../../Modals/DeleteReviewModal'
+import { EditReviewModal } from '../../Modals/EditReviewModal'
 
-//FIX THIS, IT CANNOT BE ANY
-//YOU GET THE ERROR  Property 'title' does not exist on type 'IntrinsicAttributes'
-export const Review = (props: any) => {
+//interfaces
+import {ReviewI} from '../../Interfaces/interfaces'
+
+export const Review = (props: ReviewI) => {
   const {user} = useAuthContext()
-  const {title, review, artist, id, userID} = props
-  const {deleteReview, error, isLoading} = useFormSubmit()
-  const [modal, setModal] = useState<boolean>(false)
-  const navigate = useNavigate()
+  const {title, review, artist, _id, userID} = props
+  const [deleteModal, setDeleteModal] = useState<boolean>(false)
+  const [editModal, setEditModal] = useState<boolean>(false)
+console.log('its this', user)
+console.log('its this', userID)
 
-  const handleEdit = (id: string) => {
-    //EDIT REVIEW
-  }
-
-  const showModal = () => {
-    setModal(true)
-  }
-
-  const handleDelete = async (id: string) => {
-    
-    setModal(false)
-    await deleteReview(id)
-
-    navigate('/')
-  }
-  // useEffect(() => {
-  //   handleDelete(id)
-  // },[])
   return (
     <>
-    {modal ?
-      <DeleteReviewModal id={id} /> : null
-    }
-      <Card>
-        <Card.Header>{title} and my ID is {id}</Card.Header>
-        <Card.Body>
-        <Row>
-          <Col xs={12}>{review}</Col>
-        </Row>
-        <Row>
-          <Col xs={12}>{artist}</Col>
-        </Row>
-        </Card.Body>
-          {user && user.user === userID ? 
-            <Row>
-              <Col xs={1}>
-                <Button onClick={() => handleEdit(id)}>Edit Review</Button>
-              </Col>
-              <Col xs={1}>
-                <Button onClick={() => handleDelete(id)}>Delete Review</Button>
-              </Col>
+      {editModal ? <EditReviewModal _id={_id} title={title} review={review} artist={artist} setEditModal={setEditModal} /> : null }
+      {deleteModal ? <DeleteReviewModal _id={_id} title={title} setDeleteModal={setDeleteModal} /> : null }
+      {!editModal && !deleteModal ? 
+        <Card>
+          <Card.Header>{title}</Card.Header>
+          <Card.Body>
+          <Row>
+            <Col xs={12}>{review}</Col>
           </Row>
-            : 
-            null}
-      </Card>
+          <Row>
+            <Col xs={12}>{artist}</Col>
+          </Row>
+          </Card.Body>
+            <p>whats this look like  ||||||| {user.user} also whats {userID}</p>
+            {user && user.user === userID ? 
+              <Row>
+                <Col xs={1}>
+                  <Button onClick={() => setEditModal(true)}>Edit Review</Button>
+                </Col>
+                <Col xs={1}>
+                  <Button onClick={() => setDeleteModal(true)}>Delete Review</Button>
+                </Col>
+            </Row> : null}
+        </Card>
+            : null }
     </>
   )
 }

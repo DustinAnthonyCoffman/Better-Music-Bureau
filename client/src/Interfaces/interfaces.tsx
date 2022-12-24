@@ -9,8 +9,9 @@ export interface Inputs {
     password: string;
   }
 
-
-  export interface CreateReviewInputs {
+//THIS SHOULD BE _ID
+  export interface ReviewInputs {
+    id?: string;
     title: string;
     review: string;
     artist: string;
@@ -20,7 +21,7 @@ export interface Inputs {
     title: string;
     review: string;
     artist: string;
-    userID: string;
+    userID?: string;
     _id: string;
     children?: React.ReactNode;
     key: string;
