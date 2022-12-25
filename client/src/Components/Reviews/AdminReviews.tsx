@@ -14,26 +14,22 @@ import { useReviewsContext } from '../../Hooks/useReviewsContext'
 export const AdminReviews = () => {
   
   const {user} = useAuthContext()
+
   const {reviews, dispatch} = useReviewsContext()
+//LOOK INTO WHY WE STILL NEED TO FETCH BECAUSE WE HAVE A REVIEWSCOTEXT????
 
-  // useEffect(() => {
-
-  //   //WHY ARE WE DISPATCHING HERE? DONT FUCKING SET REVIEWS FROM HERE
-  //   const fetchReviews = async () => {
-  //     const response = await fetch('http://localhost:8080/api/reviews')
-  //     const json = await response.json()    
-  //     if(response.ok && user) {
-  //       const adminReviews = json.reviews.filter((review: {userID: string}) => review.userID === user.user)
-  //       console.log('admin revs', adminReviews)
-  //       // dispatch({type: 'SET_REVIEWS', payload: adminReviews})
-  //     }
-  // }
-  //   fetchReviews()
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
-
-  const adminReviews = reviews.filter((review: {userID: string}) => review.userID === user.user)
-  console.log('AFTER FILTER', adminReviews)
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const response = await fetch('http://localhost:8080/api/reviews')
+      const json = await response.json()    
+      if(response.ok && user) {
+        dispatch({type: 'SET_REVIEWS', payload: json.reviews})
+      }
+  }
+    fetchReviews()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  const adminReviews = reviews.filter((review: {userID: string}) => review.userID === user)
   return (
     <>
       <div className='reviews'>

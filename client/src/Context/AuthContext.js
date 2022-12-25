@@ -24,7 +24,7 @@ export const AuthContextProvider = ({children}) => {
         const user = JSON.parse(localStorage.getItem('user'))
         
         if(user) {
-            //TESTING THE VALUE WE CAN DELIVER USER.USER BUTTTTT
+            // was {user: '12345'}
             dispatch({type: 'LOGIN', payload: user.user})
         }
     }, [])

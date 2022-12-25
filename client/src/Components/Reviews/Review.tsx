@@ -36,7 +36,7 @@ export const Review = (props: ReviewI) => {
             <Col xs={12}>{artist}</Col>
           </Row>
           </Card.Body>
-            {user && user.user === userID ? 
+            {user && user === userID ? 
               <Row>
                 <Col xs={1}>
                   <Button onClick={() => setEditModal(true)}>Edit Review</Button>

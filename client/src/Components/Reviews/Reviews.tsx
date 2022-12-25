@@ -14,7 +14,6 @@ export const Reviews = () => {
       const json = await response.json()
     
       if (response.ok) {
-        console.log('right here', json.reviews)
         dispatch({type: 'SET_REVIEWS', payload: json.reviews})
       }
   }

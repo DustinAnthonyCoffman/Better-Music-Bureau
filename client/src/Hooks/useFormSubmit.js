@@ -4,16 +4,12 @@ import { useReviewsContext } from './useReviewsContext'
 
 export const useFormSubmit = () => {
     const {dispatch} = useReviewsContext()
-
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    // const {user} = useAuthContext()
 
     const createReview = async (title, review, artist, userID) => {
-        console.log('createReview', userID)
         setIsLoading(true)
         setError(null)
-            console.log('before the POST', userID )
             const response = await fetch('http://localhost:8080/api/admin/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -21,19 +17,10 @@ export const useFormSubmit = () => {
             })
             const jsonResponse = await response.json()
             if(!response.ok) {
-                console.log('the POST IS bad here is json', jsonResponse)
                 setIsLoading(false)
                 setError(jsonResponse.error)
             }
             if(response.ok) {
-                console.log('we did it!!!')
-                console.log('we did it!!!')
-                console.log('we did it!!!')
-                console.log('we did it!!!')
-                console.log('we did it!!!')
-                console.log('we did it!!!')
-                console.log('we did it!!!')
-                console.log('we did it!!!')
                 setIsLoading(false)
                 dispatch({type: 'CREATE_REVIEW', payload: jsonResponse})
         }
