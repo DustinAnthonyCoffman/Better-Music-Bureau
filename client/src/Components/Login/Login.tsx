@@ -25,7 +25,6 @@ export const Login = () => {
 const {login, error, isLoading} = useLogin()
 
 const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-const navigate = useNavigate()
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),

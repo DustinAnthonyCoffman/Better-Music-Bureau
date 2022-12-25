@@ -12,25 +12,32 @@ import {useAuthContext} from '../../Hooks/useAuthContext'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
 
 export const AdminReviews = () => {
+  
   const {user} = useAuthContext()
   const {reviews, dispatch} = useReviewsContext()
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const response = await fetch('http://localhost:8080/api/reviews')
-      const json = await response.json()    
-      if(response.ok) {
-        const adminReviews = json.reviews.filter((review: {userID: string}) => review.userID === user.user)
-        dispatch({type: 'SET_REVIEWS', payload: adminReviews})
-      }
-  }
-    fetchReviews()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch])
+  // useEffect(() => {
+
+  //   //WHY ARE WE DISPATCHING HERE? DONT FUCKING SET REVIEWS FROM HERE
+  //   const fetchReviews = async () => {
+  //     const response = await fetch('http://localhost:8080/api/reviews')
+  //     const json = await response.json()    
+  //     if(response.ok && user) {
+  //       const adminReviews = json.reviews.filter((review: {userID: string}) => review.userID === user.user)
+  //       console.log('admin revs', adminReviews)
+  //       // dispatch({type: 'SET_REVIEWS', payload: adminReviews})
+  //     }
+  // }
+  //   fetchReviews()
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
+
+  const adminReviews = reviews.filter((review: {userID: string}) => review.userID === user.user)
+  console.log('AFTER FILTER', adminReviews)
   return (
     <>
       <div className='reviews'>
-        {reviews.length > 0 && reviews.map((review: ReviewI) => (
+        {adminReviews.length > 0 && adminReviews.map((review: ReviewI) => (
             <Review 
               key={review._id} 
               _id={review._id} 
@@ -39,7 +46,7 @@ export const AdminReviews = () => {
               review={review.review} 
               artist={review.artist} 
             />
-        ) )}
+        ))}
       </div>
     </>
   )

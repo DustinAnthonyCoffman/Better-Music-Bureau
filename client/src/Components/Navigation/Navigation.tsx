@@ -1,7 +1,7 @@
 //components
-import {Container, Nav, Navbar, NavDropdown, Button} from 'react-bootstrap'
-import { NavLink} from 'react-router-dom';
-import { useNavigate, Link } from 'react-router-dom';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //hooks
 import { useAuthContext } from '../../Hooks/useAuthContext';

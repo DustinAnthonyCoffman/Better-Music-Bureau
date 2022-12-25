@@ -11,19 +11,17 @@ import {NotFound} from './Pages/NotFound'
 
 //components
 import {Navigation} from './Components/Navigation/Navigation'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import {Login} from './Components/Login/Login'
 import {Signup} from './Components/Signup/Signup'
-import { useAuthContext } from './Hooks/useAuthContext'
-import { useReviewsContext } from './Hooks/useReviewsContext';
-import { CreateReview } from './Components/Reviews/CreateReview';
+import {useAuthContext} from './Hooks/useAuthContext'
+import {CreateReview} from './Components/Reviews/CreateReview';
 import {Reviews} from './Components/Reviews/Reviews'
 import {AdminReviews} from './Components/Reviews/AdminReviews'
 
 function App() {
 
-  const { user } = useAuthContext()
-
+  const {user} = useAuthContext()
   return (
     <>
       <BrowserRouter>
@@ -35,7 +33,7 @@ function App() {
             <Route path='about' element={<About />}/>
             <Route path='contact' element={<Contact />}/>
             <Route path='reviews' element={<Reviews />}/>
-            <Route path='adminReviews' element={<AdminReviews />}/>
+            <Route path='adminReviews' element= {<AdminReviews />} />
             <Route path='createReview' element={!user ? <Signup /> : <CreateReview/>} />
             <Route path='*' element={<NotFound />}/>
         </Routes>

@@ -16,10 +16,6 @@ export const reviewsReducer = (state, action) => {
             return {
                 reviews: action.payload
             }
-        case 'SET_ADMIN_REVIEWS':
-            return {
-                reviews: action.payload
-            }
         case 'CREATE_REVIEW':
             return {
                 reviews: [action.payload, ...state.reviews]

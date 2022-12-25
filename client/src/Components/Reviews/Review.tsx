@@ -20,8 +20,6 @@ export const Review = (props: ReviewI) => {
   const {title, review, artist, _id, userID} = props
   const [deleteModal, setDeleteModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
-console.log('its this', user)
-console.log('its this', userID)
 
   return (
     <>
@@ -38,7 +36,6 @@ console.log('its this', userID)
             <Col xs={12}>{artist}</Col>
           </Row>
           </Card.Body>
-            <p>whats this look like  ||||||| {user.user} also whats {userID}</p>
             {user && user.user === userID ? 
               <Row>
                 <Col xs={1}>

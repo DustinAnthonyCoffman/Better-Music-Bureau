@@ -15,7 +15,6 @@ export const useSignup = () => {
             body: JSON.stringify({email, password})
         })
         const json = await response.json()
-        console.log('json web token', json)
         if(!response.ok) {
             setIsLoading(false)
             setError(json.error)

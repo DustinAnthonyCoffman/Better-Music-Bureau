@@ -16,7 +16,8 @@ export const useLogin = () => {
       body: JSON.stringify({ email, password })
     })
     const json = await response.json()
-    console.log('here is the json response from logging in', json)
+  
+    console.log('we set this to local storage', json.user)
     if (!response.ok) {
       setIsLoading(false)
       setError(json.error)
@@ -26,7 +27,12 @@ export const useLogin = () => {
       localStorage.setItem('user', JSON.stringify(json))
 
       // update the auth context
-      dispatch({type: 'LOGIN', payload: json})
+        //THIS MIGHT BE SOMETHING WE SHOULD CHANGE
+    //THIS MIGHT BE SOMETHING WE SHOULD CHANGE
+    //THIS MIGHT BE SOMETHING WE SHOULD CHANGE
+    //THIS MIGHT BE SOMETHING WE SHOULD CHANGE
+    //THIS MIGHT BE SOMETHING WE SHOULD CHANGE
+      dispatch({type: 'LOGIN', payload: json.user})
 
       // update loading state
       setIsLoading(false)

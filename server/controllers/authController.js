@@ -41,9 +41,7 @@ const handleErrors = (err) => {
 
 exports.signup_post = async (req, res) => {
     const {email, password} = req.body;
-    console.log('did we make it to the controller???', req.body)
     try {
-        // const user = await User.create({email, password});
         const user = await User.signup(email, password);
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
@@ -60,7 +58,6 @@ exports.login_post = async (req, res) => {
 
     try {
         const user = await User.login(email, password);
-        console.log('is there something we can use here?', user)
         const token = createToken(user._id);
         res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000 })
         res.status(200).json({ user: user._id })
@@ -72,8 +69,3 @@ exports.login_post = async (req, res) => {
 }
 
 
-// exports.getUsers = async (req, res) => {
-//     try{
-//         const 
-//     }
-// }

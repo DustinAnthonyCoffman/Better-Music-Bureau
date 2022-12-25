@@ -13,12 +13,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
 
+//context
+import { useAuthContext } from '../../Hooks/useAuthContext';
+
 export const CreateReview = () => {
 
 const { register, handleSubmit, formState: { errors } } = useForm<ReviewInputs>();
 const {createReview, error, isLoading} = useFormSubmit()
 const navigate = useNavigate();
+const {user} = useAuthContext()
 
+console.log('hey does this exist?', user)
 
 
 const schema = yup.object().shape({
@@ -28,10 +33,12 @@ const schema = yup.object().shape({
 })
 
 const onSubmit: SubmitHandler<ReviewInputs> = async (data) => {
+    console.log('inside submit', user)
+    const userID = user
     const title: string = data.title
     const review: string = data.review
     const artist: string = data.artist
-    await createReview(title, review, artist)
+    await createReview(title, review, artist, userID)
     navigate('/adminReviews')
 } 
     return (

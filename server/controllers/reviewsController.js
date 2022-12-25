@@ -2,6 +2,8 @@ const Review = require('../models/Review');
 const mongoose = require('mongoose')
 
 
+
+
 // get a single review might be something we add to the global because non-admins should be able to search for reviews too
 const getReview = async (req, res) => {
     const { id } = req.params
@@ -32,6 +34,7 @@ const getReviews = async (req, res) => {
 
 //create review
 const createReview = async (req, res) => {
+    console.log('it doesnt exist on the body because the reviewsContext hook doesnt have access to userContext', req.body)
     const {title, review, artist, userID} = req.body
     let emptyFields = []
     
