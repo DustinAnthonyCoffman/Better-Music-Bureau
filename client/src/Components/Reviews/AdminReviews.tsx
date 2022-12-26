@@ -12,11 +12,8 @@ import {ReviewI} from '../../Interfaces/interfaces'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
 
 export const AdminReviews = () => {
-  // const {user} = useAuthContext()
   const {reviews, dispatch} = useReviewsContext()
   const [adminReviews, setAdminReviews] = useState<ReviewI[]>([])
-  //LOOK INTO WHY WE STILL NEED TO FETCH BECAUSE WE HAVE A REVIEWSCOTEXT????
-  console.log('reviews???', reviews)
   
   useEffect(() => {
     const storedUser = localStorage.getItem('user')
@@ -24,11 +21,8 @@ export const AdminReviews = () => {
       const response = await fetch('http://localhost:8080/api/reviews')
       const json = await response.json()
       const filterdReviews = json.reviews.filter((review: {userID: string}) => review.userID === user) 
-      console.log('filtered reviews', filterdReviews)
-      console.log('json.reviews', json.reviews)
       setAdminReviews(filterdReviews)
       if(response.ok) {
-        // dispatch({type: 'EDIT_REVIEWS', payload: json.reviews})
         dispatch({type: 'EDIT_REVIEWS', payload: json.reviews})
         return json.reviews
       }
@@ -39,18 +33,11 @@ export const AdminReviews = () => {
 
     if(storedUser) {
       const user = JSON.parse(storedUser).user
-      console.log('user in admin', user) 
       fetchReviews(user)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [dispatch, reviews])
 
-
-// useEffect(() => {
-//   console.log('what is happening')
-//   setAdminReviews([...reviews.filter((review: {userID: string}) => review.userID === user)]) 
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-// }, [reviews])
   return (
     <>
       <div className='reviews'>
