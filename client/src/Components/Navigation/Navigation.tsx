@@ -32,8 +32,8 @@ export const Navigation = () => {
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-                                <NavLink to='/' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
+                            <Nav className="ms-auto">
+                                <NavLink className='px-3' to='/' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
                                     Home
                                 </NavLink>
                                 <NavLink to='about' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>

@@ -53,14 +53,12 @@ export const useFormSubmit = () => {
             body: JSON.stringify({review})
         })
         const jsonResponse = await response.json()
-        console.log('INSIDE EDIT REVIEW JSONRESPONSE', jsonResponse)
         if(!response.ok) {
             setIsLoading(false)
             setError(jsonResponse.error)
         }
         if(response.ok) {
             setIsLoading(false)
-            //TRYING TO USE SET_REVIEW INSTEAD OF EDIT_REVIEW IDK
             dispatch({type: 'EDIT_REVIEW', payload: jsonResponse})
             return jsonResponse
         }

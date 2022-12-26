@@ -8,7 +8,6 @@ import {useEffect, useState} from 'react'
 import {ReviewI} from '../../Interfaces/interfaces'
 
 //context
-// import {useAuthContext} from '../../Hooks/useAuthContext'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
 
 export const AdminReviews = () => {

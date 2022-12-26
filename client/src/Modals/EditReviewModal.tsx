@@ -25,11 +25,7 @@ export const EditReviewModal = (props: {_id: string, title: string, review: stri
 const { register, handleSubmit, formState: { errors } } = useForm<ReviewInputs>();
 const {editReview, error, isLoading} = useFormSubmit()
 const navigate = useNavigate();
-// const {_id, setEditModal, title, review, artist } = props
-const {_id, setEditModal} = props
-const [title, setTitle] = useState(props.title)
-const [artist, setArtist] = useState(props.artist)
-const [review, setReview] = useState(props.review)
+const {_id, title, artist, review, setEditModal} = props
 
 
 const schema = yup.object().shape({
@@ -43,16 +39,13 @@ const onSubmit: SubmitHandler<ReviewInputs> = async (data) => {
     const response = await editReview(data)
     console.log('response', response)
     if(response) {
-        //turn the modal off when response is good
+        //turn the modal off when response is OK
         setEditModal(false)
-        setTitle(data.title)
-        setArtist(data.artist)
-        setReview(data.review)
     }
     else {
         return error
     }
-    // navigate('/adminReviews')
+    navigate('/adminReviews')
 } 
     return (
         <>  
