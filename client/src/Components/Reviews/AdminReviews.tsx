@@ -2,39 +2,60 @@
 import {Review} from './Review'
 
 //hooks
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
 //interfaces
 import {ReviewI} from '../../Interfaces/interfaces'
 
 //context
-import {useAuthContext} from '../../Hooks/useAuthContext'
+// import {useAuthContext} from '../../Hooks/useAuthContext'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
 
 export const AdminReviews = () => {
-  
-  const {user} = useAuthContext()
-
+  // const {user} = useAuthContext()
   const {reviews, dispatch} = useReviewsContext()
-//LOOK INTO WHY WE STILL NEED TO FETCH BECAUSE WE HAVE A REVIEWSCOTEXT????
-
+  const [adminReviews, setAdminReviews] = useState<ReviewI[]>([])
+  //LOOK INTO WHY WE STILL NEED TO FETCH BECAUSE WE HAVE A REVIEWSCOTEXT????
+  console.log('reviews???', reviews)
+  
   useEffect(() => {
-    const fetchReviews = async () => {
+    const storedUser = localStorage.getItem('user')
+    const fetchReviews = async (user: string) => {
       const response = await fetch('http://localhost:8080/api/reviews')
-      const json = await response.json()    
-      if(response.ok && user) {
-        dispatch({type: 'SET_REVIEWS', payload: json.reviews})
+      const json = await response.json()
+      const filterdReviews = json.reviews.filter((review: {userID: string}) => review.userID === user) 
+      console.log('filtered reviews', filterdReviews)
+      console.log('json.reviews', json.reviews)
+      setAdminReviews(filterdReviews)
+      if(response.ok) {
+        // dispatch({type: 'EDIT_REVIEWS', payload: json.reviews})
+        dispatch({type: 'EDIT_REVIEWS', payload: json.reviews})
+        return json.reviews
       }
-  }
-    fetchReviews()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  const adminReviews = reviews.filter((review: {userID: string}) => review.userID === user)
+      else {
+        console.log('response failed')
+      }
+    }
+
+    if(storedUser) {
+      const user = JSON.parse(storedUser).user
+      console.log('user in admin', user) 
+      fetchReviews(user)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [dispatch, reviews])
+
+
+// useEffect(() => {
+//   console.log('what is happening')
+//   setAdminReviews([...reviews.filter((review: {userID: string}) => review.userID === user)]) 
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+// }, [reviews])
   return (
     <>
       <div className='reviews'>
         {adminReviews.length > 0 && adminReviews.map((review: ReviewI) => (
-            <Review 
+            <Review
               key={review._id} 
               _id={review._id} 
               userID={review.userID} 

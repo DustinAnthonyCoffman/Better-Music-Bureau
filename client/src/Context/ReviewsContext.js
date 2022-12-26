@@ -20,10 +20,10 @@ export const reviewsReducer = (state, action) => {
             return {
                 reviews: [action.payload, ...state.reviews]
             }
-        // case 'EDIT_REVIEW':
-        //     return {
-        //         reviews: [action.payload, ...state.reviews]
-        //     }
+        case 'EDIT_REVIEW':
+            return {
+                reviews: [action.payload, ...state.reviews]
+            }
         case 'DELETE_REVIEW':
             return {
                 reviews: state.reviews.filter(r => r._id !== action.payload._id)

@@ -39,10 +39,20 @@ const schema = yup.object().shape({
 })
 
 const onSubmit: SubmitHandler<ReviewInputs> = async (data) => {
-    setEditModal(false)
     data.id = _id
-    await editReview(data)
-    navigate('/adminReviews')
+    const response = await editReview(data)
+    console.log('response', response)
+    if(response) {
+        //turn the modal off when response is good
+        setEditModal(false)
+        setTitle(data.title)
+        setArtist(data.artist)
+        setReview(data.review)
+    }
+    else {
+        return error
+    }
+    // navigate('/adminReviews')
 } 
     return (
         <>  

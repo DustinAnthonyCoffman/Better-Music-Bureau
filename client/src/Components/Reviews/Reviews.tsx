@@ -5,7 +5,6 @@ import { useReviewsContext } from '../../Hooks/useReviewsContext'
 
 export const Reviews = () => {
   const { reviews, dispatch } = useReviewsContext()
-  
 
   //should getReviews be moved into the useFormSubmit and we call it something else?
   useEffect(() => {
@@ -23,7 +22,7 @@ export const Reviews = () => {
     <>
       <div className='reviews'>
         {reviews && reviews.map((review: ReviewI) => (
-          <Review 
+          <Review
             key={review._id} 
             _id={review._id} 
             userID={review.userID} 

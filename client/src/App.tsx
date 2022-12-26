@@ -22,6 +22,7 @@ import {AdminReviews} from './Components/Reviews/AdminReviews'
 function App() {
 
   const {user} = useAuthContext()
+  console.log('user in admin', user)
   return (
     <>
       <BrowserRouter>
