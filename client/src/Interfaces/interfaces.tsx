@@ -19,6 +19,7 @@ export interface Inputs {
 
   export interface ReviewI {
     title: string;
+    image: string;
     review: string;
     artist: string;
     userID?: string;

@@ -11,7 +11,8 @@ import { useLogout } from '../../Hooks/useLogout';
 //dependencies
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-
+import './Navigation.css'
+import {Button} from 'react-bootstrap'
 
 export const Navigation = () => {
     const {logout} = useLogout()
@@ -26,52 +27,48 @@ export const Navigation = () => {
         <>
             <header>
                 <Navbar bg='light' expand='lg'>
-                    <Container>
-                        <Navbar.Brand>
-                        <NavLink to='/'>Better Music Bureau {coffee}</NavLink>
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="ms-auto">
-                                <NavLink className='px-3' to='/' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
-                                    Home
-                                </NavLink>
-                                <NavLink to='about' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
-                                    About
-                                </NavLink>
-                                <NavLink to='contact' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
-                                    Contact
-                                </NavLink>
-                                <NavLink to='reviews' style={({isActive}) => { return isActive ? {color: 'red'} : {} }}>
-                                    Reviews
-                                </NavLink>
-                                <div>
-                                    {user && (
-                                        <NavDropdown title="Admin" id="basic-nav-dropdown">
-                                            <NavLink to='adminReviews'>My Reviews</NavLink>
-                                            <NavLink to='createReview'>Create Review</NavLink>
-                                            <NavDropdown.Divider />
-                                            <NavDropdown.Item href="#action/3.4">Credits</NavDropdown.Item>
-                                        </NavDropdown>
-                                    )}
-                                </div>
-                                <div>
-                                    {user && (
-                                        <div>
-                                            <span>{user.email}</span>
-                                            <button onClick={handleClick}>Log out</button>
-                                        </div>
-                                    )}
-                                    {!user && (
-                                        <div>
-                                        <NavLink to="/login">Login</NavLink>
-                                        <NavLink to="/signup">Signup</NavLink>
-                                        </div>
-                                    )}
-                                </div>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
+                    <Navbar.Brand>
+                    <NavLink className='nav-item ml-auto' to='/'>Better Music Bureau {coffee}</NavLink>
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                    <Navbar.Collapse>
+                        <Nav className="ms-auto">
+                            <NavLink className='px-2 nav-item' to='/' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                                Home
+                            </NavLink>
+                            <NavLink className='px-2 nav-item' to='about' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                                About
+                            </NavLink>
+                            <NavLink className='px-2 nav-item' to='contact' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                                Contact
+                            </NavLink>
+                            <NavLink className='px-2 nav-item' to='reviews' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                                Reviews
+                            </NavLink>
+                            {user && (
+                                <NavDropdown className='nav-title nav-item' title="Admin">
+                                    <NavLink className='nav-item nav-item-dropdown' to='adminReviews'>My Reviews</NavLink>
+                                    <NavLink className='nav-item nav-item-dropdown' to='createReview'>Create Review</NavLink>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item className='nav-item nav-item-dropdown' href='/about'>Credits</NavDropdown.Item>
+                                </NavDropdown>
+                            )}
+                            <div>
+                                {user && (
+                                    <div>
+                                        <span>{user.email}</span>
+                                        <Button className='nav-item btn-secondary' onClick={handleClick}>Log out</Button>
+                                    </div>
+                                )}
+                                {!user && (
+                                    <div>
+                                    <NavLink type='button' className='button' to="/login">Login</NavLink>
+                                    <NavLink type='button' className='button' to="/signup">Signup</NavLink>
+                                    </div>
+                                )}
+                            </div>
+                        </Nav>
+                    </Navbar.Collapse>
                 </Navbar>
             </header>
         </>

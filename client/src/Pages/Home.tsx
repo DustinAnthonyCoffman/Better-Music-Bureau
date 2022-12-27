@@ -1,11 +1,12 @@
 import {Reviews} from '../Components/Reviews/Reviews'
+import '../App.css'
 
 export const Home = () => {
 
   return (
-    <>
-        <h1>HOMEPAGE</h1>
+    <div className='home'>
         <Reviews />
-    </>
+    </div>
   )
 }
+// client/public/images/glassing-logo.jpeg

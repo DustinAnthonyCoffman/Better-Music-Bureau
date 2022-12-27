@@ -12,7 +12,6 @@ import {useFormSubmit} from '../Hooks/useFormSubmit'
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
-import {useState} from 'react'
 
 // type Props = {
 //     onClick: React.MouseEventHandler<HTMLButtonElement>
@@ -66,8 +65,8 @@ const onSubmit: SubmitHandler<ReviewInputs> = async (data) => {
                 </Form.Group>
                 <Row>
                     <Col xs={12}>
-                        <Button type='submit' variant='primary' disabled={isLoading}>Submit</Button>
-                        <Button type='submit' variant='primary' disabled={isLoading} onClick={() => setEditModal(false)}>Cancel</Button>
+                        <Button type='submit' className='col btn btn-dark mx-4' disabled={isLoading}>Submit</Button>
+                        <Button type='submit' className='col btn btn-dark mx-4' disabled={isLoading} onClick={() => setEditModal(false)}>Cancel</Button>
                     </Col>
                 </Row>
             </Form>

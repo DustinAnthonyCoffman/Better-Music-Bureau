@@ -1,0 +1,14 @@
+.nav-item {
+    text-decoration: none;
+    color: #0000008C;
+    font-weight: bold;   
+}
+
+.nav-item-dropdown {
+    display: flex;
+    padding-left: 30px;
+}
+
+.nav-title {
+    padding: none;
+}

@@ -2,7 +2,7 @@ import {Review} from './Review'
 import {useEffect} from 'react'
 import {ReviewI} from '../../Interfaces/interfaces'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
-
+import './Reviews.css'
 export const Reviews = () => {
   const { reviews, dispatch } = useReviewsContext()
 
@@ -23,6 +23,7 @@ export const Reviews = () => {
       <div className='reviews'>
         {reviews && reviews.map((review: ReviewI) => (
           <Review
+            image={'/images/glassing-logo.jpeg'}
             key={review._id} 
             _id={review._id} 
             userID={review.userID} 

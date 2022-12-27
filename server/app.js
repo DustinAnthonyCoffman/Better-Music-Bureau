@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const path = require('path')
 //all CRUD related routes to an admin
 const adminRoutes = require('./routes/adminRoutes')
 
@@ -31,6 +32,7 @@ app.use(cors({origin: true, credentials: true}))
 app.use(express.json()) //needed for sending json POSTS
 app.use(express.urlencoded()) //needed for sending json POSTS
 app.use(cookieParser())
+app.use(express.static(path.join(__dirname, '../client/public'))); //needed to get express to use the public/images or other static files
 
 //routes
 app.use((req, res, next) => {

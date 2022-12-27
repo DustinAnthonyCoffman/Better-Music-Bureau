@@ -17,36 +17,36 @@ import {ReviewI} from '../../Interfaces/interfaces'
 
 export const Review = (props: ReviewI) => {
   const {user} = useAuthContext()
-  const {title, review, artist, _id, userID} = props
+  const {title, review, artist, _id, userID, image} = props
   const [deleteModal, setDeleteModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
 
   return (
-    <>
+    <div className='px-4 py-4 my-4 mx-4'>
       {editModal ? <EditReviewModal _id={_id} title={title} review={review} artist={artist} setEditModal={setEditModal} /> : null }
       {deleteModal ? <DeleteReviewModal _id={_id} title={title} setDeleteModal={setDeleteModal} /> : null }
       {!editModal && !deleteModal ? 
         <Card>
           <Card.Header>{title}</Card.Header>
-          <Card.Body>
-          <Row>
-            <Col xs={12}>{review}</Col>
-          </Row>
-          <Row>
-            <Col xs={12}>{artist}</Col>
-          </Row>
+          <Card.Body className='px-4 py-4 my-4 mx-4'>
+            <img src={image} alt='artist album cover' />
+            <Row className='align-items-center'>
+              <Col>{review}</Col>
+            </Row>
+            <Row>
+              <Col className='my-4 artist'>By: {artist}</Col>
+            </Row>
           </Card.Body>
             {user && user === userID ? 
               <Row>
-                <Col xs={1}>
-                  <Button onClick={() => setEditModal(true)}>Edit Review</Button>
-                </Col>
-                <Col xs={1}>
-                  <Button onClick={() => setDeleteModal(true)}>Delete Review</Button>
+                <Col xs={12}>
+                  <Button className='col btn btn-dark mx-4 my-4' onClick={() => setEditModal(true)}>Edit Review</Button>
+                  <Button className='col btn btn-dark mx-4 my-4' onClick={() => setDeleteModal(true)}>Delete Review</Button>
                 </Col>
             </Row> : null}
         </Card>
             : null }
-    </>
+    </div>
   )
 }
+

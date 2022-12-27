@@ -1,0 +1,21 @@
+.reviews {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+
+.card-header:first-child {
+    height: 100px;
+    font-weight: bold;
+    word-wrap: break-word;
+    font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist {
+    font-weight: lighter;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+}
