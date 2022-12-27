@@ -1,5 +1,6 @@
 import {Review} from './Review'
 import {useEffect} from 'react'
+import {Row, Col} from 'react-bootstrap'
 import {ReviewI} from '../../Interfaces/interfaces'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
 import './Reviews.css'
@@ -19,20 +20,21 @@ export const Reviews = () => {
     fetchReviews()
   }, [dispatch])
   return (
-    <>
-      <div className='reviews'>
-        {reviews && reviews.map((review: ReviewI) => (
-          <Review
-            image={'/images/glassing-logo.jpeg'}
-            key={review._id} 
-            _id={review._id} 
-            userID={review.userID} 
-            title={review.title} 
-            review={review.review} 
-            artist={review.artist} 
-          />
-        ))}
-      </div>
-    </>
+    <div className='container'>
+      <Row>
+          {reviews && reviews.map((review: ReviewI) => (
+            <Review
+              image={'/images/deafClub.jpeg'}
+              key={review._id} 
+              _id={review._id} 
+              userID={review.userID} 
+              title={review.title} 
+              review={review.review} 
+              artist={review.artist} 
+            />
+          ))}
+      </Row>
+
+    </div>
   )
 }

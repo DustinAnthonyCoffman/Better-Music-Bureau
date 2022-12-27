@@ -21,6 +21,7 @@ export const Navigation = () => {
     const navigate = useNavigate()
     const handleClick = () => {
         logout()
+        
         navigate('/')
     }
     return (

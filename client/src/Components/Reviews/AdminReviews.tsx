@@ -42,7 +42,7 @@ export const AdminReviews = () => {
       <div className='reviews'>
         {adminReviews.length > 0 && adminReviews.map((review: ReviewI) => (
             <Review
-              image={'../../../public/glassing-logo.jpeg'}
+              image={'/images/glassing-logo.jpeg'}
               key={review._id} 
               _id={review._id} 
               userID={review.userID} 

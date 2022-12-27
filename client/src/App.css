@@ -6,9 +6,21 @@
   --primary: #1aac83;
   --error: #e7195a;
 }
-
+/* 
 .home {
     display: flex;
     justify-content: center;
     
-}
+} */
+
+
+  body {
+    background-color: red;
+  }
+  .get {
+    color: red;
+  }
+
+  .carouselImage {
+    width: 100%
+  }

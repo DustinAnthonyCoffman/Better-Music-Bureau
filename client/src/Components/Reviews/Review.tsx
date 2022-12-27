@@ -22,16 +22,16 @@ export const Review = (props: ReviewI) => {
   const [editModal, setEditModal] = useState<boolean>(false)
 
   return (
-    <div className='px-4 py-4 my-4 mx-4'>
+    <Col className='px-1 py-1 my-1 mx-1'>
       {editModal ? <EditReviewModal _id={_id} title={title} review={review} artist={artist} setEditModal={setEditModal} /> : null }
       {deleteModal ? <DeleteReviewModal _id={_id} title={title} setDeleteModal={setDeleteModal} /> : null }
       {!editModal && !deleteModal ? 
         <Card>
           <Card.Header>{title}</Card.Header>
-          <Card.Body className='px-4 py-4 my-4 mx-4'>
+          <Card.Body className='px-1 py-1 my-1 mx-1'>
             <img src={image} alt='artist album cover' />
             <Row className='align-items-center'>
-              <Col>{review}</Col>
+              {/* <Col>{review}</Col> */}
             </Row>
             <Row>
               <Col className='my-4 artist'>By: {artist}</Col>
@@ -46,7 +46,7 @@ export const Review = (props: ReviewI) => {
             </Row> : null}
         </Card>
             : null }
-    </div>
+    </Col>
   )
 }
 

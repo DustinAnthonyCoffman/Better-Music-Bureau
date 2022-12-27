@@ -1,6 +1,6 @@
 
 //components
-import {Form, Col, Row, Button} from 'react-bootstrap'
+import {Form, Col, Row, Button, Modal, ModalHeader} from 'react-bootstrap'
 
 //interfaces
 import { ReviewInputs } from '../Interfaces/interfaces'
@@ -47,7 +47,7 @@ const onSubmit: SubmitHandler<ReviewInputs> = async (data) => {
     navigate('/adminReviews')
 } 
     return (
-        <>  
+        <>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Label>Edit Review</Form.Label>
                 <Form.Group className="mb-3">
