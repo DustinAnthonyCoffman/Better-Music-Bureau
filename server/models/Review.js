@@ -21,6 +21,22 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: false
+    },
+    image: {
+        type: String,
+        require: true
+    },
+    banner: {
+        type: String,
+        require: false
+    },
+    postDate: {
+        type: Date,
+        default: Date.now
+    },
+    reviewer: {
+        type: String,
+        required: true
     }
 }, {timestamps: true});
 

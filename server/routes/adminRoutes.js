@@ -27,12 +27,12 @@ router.post('/upload', function (req, res) {
 
     // move from temp location to your server's public/images directory
     uploadFile
-          .mv(path.join(__dirname, 'public', 'images', uploadFile.name))
-          .then(() => {
-                // perform database save operation here and then give appropriate response
-                res.json({ message: 'File uploaded', imageUrl: imageUrl });
-          })
-          .catch((error) => console.log(error));
+        .mv(path.join(__dirname, 'public', 'images', uploadFile.name))
+        .then(() => {
+            // perform database save operation here and then give appropriate response
+            res.json({ message: 'File uploaded', imageUrl: imageUrl });
+        })
+        .catch((error) => console.log(error));
 });
 
 module.exports = router;
