@@ -1,5 +1,6 @@
 const Review = require('../models/Review');
 const mongoose = require('mongoose')
+const fs = require('fs')
 
 // get a single review might be something we add to the global because non-admins should be able to search for reviews too
 const getReview = async (req, res) => {
@@ -32,8 +33,19 @@ const getReviews = async (req, res) => {
 //create review
 const createReview = async (req, res) => {
     const {title, review, artist, userID, author, authorBand, banner} = req.body
-    const reviewImage = req.file.originalname
+    console.log('req.file', req.file)
     
+    //convert file information into base64 encoding
+    const image = fs.readFileSync(req.file.path)
+    const base64 = image.toString('base64')
+    
+    //rebuild image object with base64 encoding
+    const reviewImage = {
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        imageBase64: base64
+    }
+
     let emptyFields = []
     
     if(!title) {

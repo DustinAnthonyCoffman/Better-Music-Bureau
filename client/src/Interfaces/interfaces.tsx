@@ -23,6 +23,11 @@ export interface Inputs {
     reviewImage: string;
   }
 
+  export interface ReviewImage {
+    filename: string,
+    contentType: string,
+    imageBase64: string
+  }
   export interface ReviewI {
     title: string;
     review: string;
@@ -30,7 +35,7 @@ export interface Inputs {
     author: string;
     authorBand: string;
     banner: string;
-    reviewImage: string;
+    reviewImage: ReviewImage;
     userID?: string;
     _id: string;
     children?: React.ReactNode;

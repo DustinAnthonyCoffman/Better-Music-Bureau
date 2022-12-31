@@ -23,9 +23,19 @@ const reviewSchema = new mongoose.Schema({
         required: true
     },
     reviewImage: {
-        type: String,
-        unique: false,
-        require: true
+        filename:{
+            type: String,
+            unique: false,
+            required: true
+        },
+        contentType: {
+            type: String,
+            required: true
+        },
+        imageBase64: {
+            type: String,
+            required: true
+        }
     },
     banner: {
         type: String,

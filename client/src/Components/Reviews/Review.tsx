@@ -3,7 +3,7 @@
 import {useState} from 'react'
 
 //components
-import {Col, Button, Row, Card} from 'react-bootstrap'
+import {Col, Button, Row, Card, Image} from 'react-bootstrap'
 
 //auth
 import {useAuthContext} from '../../Hooks/useAuthContext'
@@ -16,8 +16,9 @@ import { EditReviewModal } from '../../Modals/EditReviewModal'
 import {ReviewI} from '../../Interfaces/interfaces'
 
 export const Review = (props: ReviewI) => {
+  console.log('props', props)
   const {user} = useAuthContext()
-  const {title, review, artist, _id, userID} = props
+  const {title, review, artist, _id, userID, reviewImage, author, authorBand} = props
   const [deleteModal, setDeleteModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
 
@@ -30,10 +31,15 @@ export const Review = (props: ReviewI) => {
           <Card.Header>{title}</Card.Header>
           <Card.Body className='px-1 py-1 my-1 mx-1'>
             <Row className='align-items-center'>
-              {/* <Col>{review}</Col> */}
+              <Col>{review}</Col>
+            </Row>
+            <Row className='align-items-center'>
+              <Col>
+                <Image src={`data:${reviewImage.contentType};base64,${reviewImage.imageBase64}`} alt='Review Image' className='fluid rounded' />
+              </Col>
             </Row>
             <Row>
-              <Col className='my-4 artist'>By: {artist}</Col>
+              <Col className='my-4 artist'>By: {author} of {authorBand}</Col>
             </Row>
           </Card.Body>
             {user && user === userID ? 
