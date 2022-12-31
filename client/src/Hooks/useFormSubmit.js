@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useReviewsContext } from './useReviewsContext'
+import axios from 'axios'
 
 
 export const useFormSubmit = () => {
@@ -7,24 +8,26 @@ export const useFormSubmit = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    const createReview = async (title, review, artist, userID) => {
+    const createReview = async (formData) => {
         setIsLoading(true)
         setError(null)
-            const response = await fetch('http://localhost:8080/api/admin/', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({title, review, artist, userID })
-            })
-            const jsonResponse = await response.json()
-            if(!response.ok) {
-                setIsLoading(false)
-                setError(jsonResponse.error)
-            }
-            if(response.ok) {
-                setIsLoading(false)
-                dispatch({type: 'CREATE_REVIEW', payload: jsonResponse})
+        try {
+            const response = await axios.post('http://localhost:8080/api/admin/', formData)
+                .then((res) => {
+                    console.log('res.data', res.data)
+                    setIsLoading(false)
+                    dispatch({type: 'CREATE_REVIEW', payload: res.data})
+                })
+                .catch(err => {
+                    console.log('err', err)
+                    setIsLoading(false)
+                    setError(err)
+                })
         }
-}
+        catch (err) {
+            console.log('err', err)
+        }
+    }
     const deleteReview = async (id) => {
         setIsLoading(true)
         setError(null)

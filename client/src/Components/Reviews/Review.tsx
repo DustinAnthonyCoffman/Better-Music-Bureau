@@ -17,7 +17,7 @@ import {ReviewI} from '../../Interfaces/interfaces'
 
 export const Review = (props: ReviewI) => {
   const {user} = useAuthContext()
-  const {title, review, artist, _id, userID, image} = props
+  const {title, review, artist, _id, userID} = props
   const [deleteModal, setDeleteModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
 
@@ -29,7 +29,6 @@ export const Review = (props: ReviewI) => {
         <Card>
           <Card.Header>{title}</Card.Header>
           <Card.Body className='px-1 py-1 my-1 mx-1'>
-            <img src={image} alt='artist album cover' />
             <Row className='align-items-center'>
               {/* <Col>{review}</Col> */}
             </Row>

@@ -1,9 +1,6 @@
 const Review = require('../models/Review');
 const mongoose = require('mongoose')
 
-
-
-
 // get a single review might be something we add to the global because non-admins should be able to search for reviews too
 const getReview = async (req, res) => {
     const { id } = req.params
@@ -34,8 +31,9 @@ const getReviews = async (req, res) => {
 
 //create review
 const createReview = async (req, res) => {
-    console.log('it doesnt exist on the body because the reviewsContext hook doesnt have access to userContext', req.body)
-    const {title, review, artist, userID} = req.body
+    const {title, review, artist, userID, author, authorBand, banner} = req.body
+    const reviewImage = req.file.originalname
+    
     let emptyFields = []
     
     if(!title) {
@@ -50,13 +48,25 @@ const createReview = async (req, res) => {
     if(!userID) {
         emptyFields.push('userID')
     }
+    if(!author) {
+        emptyFields.push('author')
+    }
+    if(!authorBand) {
+        emptyFields.push('authorBand')
+    }
+    if(!banner) {
+        emptyFields.push('banner')
+    }
+    if(!reviewImage) {
+        emptyFields.push('reviewImage')
+    }
     if(emptyFields.length > 0) {
         return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
     }
 
     // add doc to db
     try {
-        const createdReview = await Review.create({title, review, artist, userID})
+        const createdReview = await Review.create({title, review, artist, userID, author, authorBand, banner, reviewImage})
         res.status(200).json(createdReview)
     } catch (error) {
         res.status(400).json({error: error.message})

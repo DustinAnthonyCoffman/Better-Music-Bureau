@@ -20,18 +20,6 @@ const userSchema = new mongoose.Schema({
 });
 
 
-// userSchema.post('save', function(doc, next) {
-//     console.log('new user was created and saved', doc)
-//     next()
-// });
-
-
-// userSchema.pre('save', async function(next) {
-//     const salt = await bcrypt.genSalt();
-//     this.password = await bcrypt.hash(this.password, salt)
-//     next();
-// })
-
 // create a static method on our model to check password and login user
 userSchema.statics.login = async function(email, password) {
     

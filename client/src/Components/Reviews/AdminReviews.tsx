@@ -41,15 +41,18 @@ export const AdminReviews = () => {
     <>
       <div className='reviews'>
         {adminReviews.length > 0 && adminReviews.map((review: ReviewI) => (
-            <Review
-              image={'/images/glassing-logo.jpeg'}
-              key={review._id} 
-              _id={review._id} 
-              userID={review.userID} 
-              title={review.title} 
-              review={review.review} 
-              artist={review.artist} 
-            />
+          <Review
+          key={review._id} 
+          _id={review._id} 
+          userID={review.userID} 
+          title={review.title} 
+          review={review.review} 
+          artist={review.artist} 
+          author={review.author} 
+          authorBand={review.authorBand} 
+          banner={review.banner} 
+          reviewImage={review.reviewImage} 
+        />
         ))}
       </div>
     </>

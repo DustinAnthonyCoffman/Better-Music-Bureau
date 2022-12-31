@@ -1,3 +1,5 @@
+
+//this should be called UserInputs
 export interface Inputs {
     email: string;
     password: string;
@@ -9,19 +11,26 @@ export interface Inputs {
     password: string;
   }
 
-//THIS SHOULD BE _ID
+//THIS SHOULD BE _ID, fix FILE TO BE A STRING
   export interface ReviewInputs {
     id?: string;
     title: string;
     review: string;
     artist: string;
+    author: string;
+    authorBand: string;
+    banner: string;
+    reviewImage: string;
   }
 
   export interface ReviewI {
     title: string;
-    image: string;
     review: string;
     artist: string;
+    author: string;
+    authorBand: string;
+    banner: string;
+    reviewImage: string;
     userID?: string;
     _id: string;
     children?: React.ReactNode;

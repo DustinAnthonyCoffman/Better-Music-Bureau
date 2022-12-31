@@ -5,8 +5,7 @@ const reviewSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Please enter a title'],
-        unique: true,
-        lowercase: true
+        unique: true
     },
     review: {
         type: String,
@@ -15,27 +14,32 @@ const reviewSchema = new mongoose.Schema({
     },
     artist: {
         type: String,
+        unique: false,
         required: [true, 'Please submit the artist you are reviewing']
     },
     userID: {
         type: String,
-        required: true,
-        unique: false
+        unique: false,
+        required: true
     },
-    image: {
+    reviewImage: {
         type: String,
+        unique: false,
         require: true
     },
     banner: {
         type: String,
+        unique: false,
         require: false
     },
-    postDate: {
-        type: Date,
-        default: Date.now
-    },
-    reviewer: {
+    author: {
         type: String,
+        unique: false,
+        require: true
+    },
+    authorBand: {
+        type: String,
+        unique: false,
         required: true
     }
 }, {timestamps: true});

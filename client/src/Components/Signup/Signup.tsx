@@ -36,7 +36,6 @@ const schema = yup.object().shape({
 const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const email: string = data.email
     const password: string = data.password
-    console.log('before we fetch', data)
     await signup(email, password)
 } 
 
