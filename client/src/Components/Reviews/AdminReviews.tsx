@@ -1,5 +1,7 @@
 //components
 import {Review} from './Review'
+import {Row} from 'react-bootstrap'
+
 
 //hooks
 import {useEffect, useState} from 'react'
@@ -38,24 +40,24 @@ export const AdminReviews = () => {
 }, [dispatch, reviews])
 
   return (
-    <>
-      <div className='reviews'>
-        {adminReviews.length > 0 && adminReviews.map((review: ReviewI) => (
-          <Review
-          key={review._id} 
-          _id={review._id} 
-          userID={review.userID} 
-          title={review.title} 
-          review={review.review} 
-          artist={review.artist} 
-          author={review.author} 
-          authorBand={review.authorBand} 
-          banner={review.banner} 
-          reviewImage={review.reviewImage} 
-        />
-        ))}
+      <div className='container'>
+        <Row>
+          {adminReviews && adminReviews.map((review: ReviewI) => (
+              <Review
+                key={review._id} 
+                _id={review._id} 
+                userID={review.userID} 
+                title={review.title} 
+                review={review.review} 
+                artist={review.artist} 
+                author={review.author} 
+                authorBand={review.authorBand} 
+                banner={review.banner} 
+                reviewImage={review.reviewImage} 
+              />
+            ))}
+          </Row>
       </div>
-    </>
   )
 }
 

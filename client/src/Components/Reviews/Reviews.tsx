@@ -21,7 +21,7 @@ export const Reviews = () => {
   }, [dispatch])
   return (
     <div className='container'>
-      <Row>
+      <Row className='row row-cols-sm-2 row-cols-md-4 row-cols-lg-4 row-cols-xl-4'>
           {reviews && reviews.map((review: ReviewI) => (
             <Review
               key={review._id} 
