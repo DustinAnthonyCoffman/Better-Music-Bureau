@@ -15,9 +15,6 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage: storage})
-// const upload = multer({storage: storage}).single('file')
-// this creates error TypeError: Cannot read properties of undefined (reading 'transfer-encoding') idk if thats progress
-
 
 
 const sendEmail = (options) => {

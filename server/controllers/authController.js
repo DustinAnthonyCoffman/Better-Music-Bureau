@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const sendEmail = require('../middleware/adminMiddleware')
+const { sendEmail } = require('../middleware/adminMiddleware')
 const maxAge = 3 * 24 * 60 * 60;
 
 
@@ -68,6 +68,62 @@ exports.login_post = async (req, res) => {
     }
 }
 
-exports.forgot_password = async (req, res, next) => {
-    console.log('asdasd')
-}
+//Forgot Password Initialization
+exports.forgotPassword = async (req, res, next) => {
+  // Send Email to email provided but first check if user exists
+    const { email } = req.body;
+    console.log('email', email)
+    
+    try {
+        console.log('we made it to try')
+        const user = await User.findOne({ email });
+        
+        if (!user) {
+        console.log('user does not exist')
+        return next(new ErrorResponse("No email could not be sent", 404));
+    }
+
+    // Reset Token Gen and add to database hashed (private) version of token
+    const resetToken = user.getResetPasswordToken();
+
+    await user.save();
+
+    // Create reset url to email to provided email
+    //THIS MIGHT BE LOCAL8080
+    const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+
+    // HTML Message
+    const message = `
+        <h1>You have requested a password reset</h1>
+        <p>Please make a put request to the following link:</p>
+        <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+    `;
+
+    try {
+        console.log('inside sendEmail')
+        await sendEmail({
+            to: user.email,
+            subject: "Password Reset Request",
+            text: message,
+        });
+
+        res.status(200).json({ success: true, data: "Email Sent" });
+    } catch (err) {
+        console.log('are we in the catch block?????');
+        console.log('are we in the catch block?????');
+        console.log('are we in the catch block?????');
+        console.log('are we in the catch block?????');
+        console.log('are we in the catch block?????');
+        console.log('are we in the catch block?????');
+        console.log(err);
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+
+        await user.save();
+
+        return next(new ErrorResponse("Email could not be sent", 500));
+    }
+    } catch (err) {
+    next(err);
+    }
+};
