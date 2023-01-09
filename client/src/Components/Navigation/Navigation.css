@@ -1,7 +1,22 @@
+.nav-title {
+    color: rgba(58,62,69, 0.7);
+    font-weight: bold;
+    font-size: x-large;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(58,62,69, 10);
+}
+.nav-title:hover {
+    color: #d3d3d3;
+    text-shadow: 1px 1px 1px #d3d3d3;
+
+}
 .nav-item {
     text-decoration: none;
-    color: #0000008C;
+    color: rgba(58,62,69);
     font-weight: bold;   
+}
+.nav-item:hover {
+    color: #d3d3d3;
 }
 
 .nav-item-dropdown {

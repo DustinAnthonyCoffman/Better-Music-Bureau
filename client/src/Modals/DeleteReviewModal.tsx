@@ -1,4 +1,3 @@
-import { DeleteReviewModalI } from '../Interfaces/interfaces'
 import { Card } from 'react-bootstrap'
 import {useFormSubmit} from '../Hooks/useFormSubmit'
 import {Button} from 'react-bootstrap'

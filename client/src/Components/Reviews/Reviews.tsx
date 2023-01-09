@@ -4,6 +4,8 @@ import {Row} from 'react-bootstrap'
 import {ReviewI} from '../../Interfaces/interfaces'
 import { useReviewsContext } from '../../Hooks/useReviewsContext'
 import './Reviews.css'
+
+
 export const Reviews = () => {
   const { reviews, dispatch } = useReviewsContext()
 
@@ -20,24 +22,23 @@ export const Reviews = () => {
     fetchReviews()
   }, [dispatch])
   return (
-    <div className='container'>
-      <Row className='row row-cols-sm-2 row-cols-md-4 row-cols-lg-4 row-cols-xl-4'>
-          {reviews && reviews.map((review: ReviewI) => (
-            <Review
-              key={review._id} 
-              _id={review._id} 
-              userID={review.userID} 
-              title={review.title} 
-              review={review.review} 
-              artist={review.artist} 
-              author={review.author} 
-              authorBand={review.authorBand} 
-              banner={review.banner} 
-              reviewImage={review.reviewImage} 
-            />
-          ))}
+    <>
+      <Row className='space-around'>
+        {reviews && reviews.map((review: ReviewI) => (
+          <Review
+            key={review._id} 
+            _id={review._id} 
+            userID={review.userID} 
+            title={review.title} 
+            review={review.review} 
+            artist={review.artist} 
+            author={review.author} 
+            authorBand={review.authorBand} 
+            banner={review.banner} 
+            reviewImage={review.reviewImage} 
+          />
+        ))}
       </Row>
-
-    </div>
+    </>
   )
 }

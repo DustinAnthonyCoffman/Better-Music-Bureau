@@ -1,13 +1,7 @@
-
-.card-body {
-    object-fit: fill;
-    max-height: 22em;
-}
-
-.card-img-top {
-    width: 100%;
+.review-image {
+    width: 15vw;
     height: 15vw;
-    object-fit: contain;
+    object-fit: contain;   
 }
 
 .admin-button {
@@ -21,4 +15,12 @@
 
 .reviews  {
     overflow-wrap: break-word;
+}
+
+.container {
+    margin-top: 6em;
+}
+
+.test {
+    margin-bottom: 50px;
 }

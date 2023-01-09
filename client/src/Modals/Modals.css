@@ -1,0 +1,5 @@
+.review-details-modal {
+    z-index: 1000000;
+    background-color: red;
+    color: red;
+}

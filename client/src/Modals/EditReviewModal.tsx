@@ -1,6 +1,6 @@
 
 //components
-import {Form, Col, Row, Button, Modal, ModalHeader} from 'react-bootstrap'
+import {Form, Col, Row, Button} from 'react-bootstrap'
 
 //interfaces
 import { ReviewInputs } from '../Interfaces/interfaces'

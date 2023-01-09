@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
+const sendEmail = require('../middleware/adminMiddleware')
 const maxAge = 3 * 24 * 60 * 60;
 
 
@@ -68,4 +68,6 @@ exports.login_post = async (req, res) => {
     }
 }
 
-
+exports.forgot_password = async (req, res, next) => {
+    console.log('asdasd')
+}

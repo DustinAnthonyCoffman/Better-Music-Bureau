@@ -57,5 +57,4 @@ export interface Inputs {
   export interface DeleteReviewModalI {
     id: string;
     children?: React.ReactNode;
-    
   }

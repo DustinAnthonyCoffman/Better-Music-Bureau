@@ -1,11 +1,14 @@
 
 //components
 import {Card, Row, Col, Button, Form} from 'react-bootstrap'
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //hooks
 import { useForm, SubmitHandler } from "react-hook-form";
 import {useLogin} from '../../Hooks/useLogin'
+
+//css
+import './Login.css'
 
 //dependencies
 import * as yup from 'yup'
@@ -41,7 +44,7 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
     return (
         <>  
             <Card className='shadow-lg col-sm-6'>
-                <Card.Header className='text-primary signup py-4'>Better Music Bureau </Card.Header>
+                <Card.Header className='login signup py-4'>Better Music Bureau </Card.Header>
                 <Card.Body className='m-3'>
                     <Form onSubmit={handleSubmit(onSubmit)} className='shadow-4-strong'>
                         <Row>
@@ -64,7 +67,7 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                         </Row>
                         <Row>
                             <Col xs={12}>
-                                <Button type='submit' variant='primary' disabled={isLoading}>Login</Button>
+                                <Button type='submit' className='btn-secondary' disabled={isLoading}>Login</Button>
                             </Col>
                             <>{errors.confirmPassword && "Passwords Should Match"}</>
                         </Row>

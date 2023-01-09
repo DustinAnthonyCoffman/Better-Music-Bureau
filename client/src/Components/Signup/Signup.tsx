@@ -42,7 +42,7 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
     return (
         <>  
             <Card className='shadow-lg col-sm-6'>
-                <Card.Header className='text-primary signup py-4'>Better Music Bureau </Card.Header>
+                <Card.Header className='signup py-4'>Better Music Bureau </Card.Header>
                 <Card.Body className='m-3'>
                     <Form onSubmit={handleSubmit(onSubmit)} className='shadow-4-strong'>
                         <Row>
@@ -73,7 +73,7 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                         </Row>
                         <Row>
                             <Col xs={12}>
-                                <Button type='submit' variant='primary' disabled={isLoading}>Sign Up</Button>
+                                <Button type='submit' className='btn-secondary' variant='primary' disabled={isLoading}>Sign Up</Button>
                             </Col>
                             <>{errors.confirmPassword && "Passwords Should Match"}</>
                         </Row>
@@ -82,6 +82,7 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                     <Row className='pt-5'>
                         <Col xs={3}>Already have an account?</Col>
                         <Col xs={5}>
+                            
                             <NavLink to='/login'>Login</NavLink>
                         </Col>
                     </Row>

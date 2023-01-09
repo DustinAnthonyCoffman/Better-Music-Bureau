@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const path = require('path')
+
 //all CRUD related routes to an admin
 const adminRoutes = require('./routes/adminRoutes')
 
@@ -14,7 +15,6 @@ const authRoutes = require('./routes/authRoutes')
 
 //normal get and get all routes for every user
 const routes = require('./routes/routes')
-
 
 //app
 const app = express()

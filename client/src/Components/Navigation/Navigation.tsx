@@ -27,27 +27,27 @@ export const Navigation = () => {
     return (
         <>
             <header>
-                <Navbar bg='light' expand='lg'>
+                <Navbar fixed='top' bg='light' expand='lg'>
                     <Navbar.Brand>
-                    <NavLink className='nav-item ml-auto' to='/'>Better Music Bureau {coffee}</NavLink>
+                    <NavLink className='nav-title ml-auto mx-3' to='/'>BMB{coffee}</NavLink> 
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse>
                         <Nav className="ms-auto">
-                            <NavLink className='px-2 nav-item' to='/' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                            <NavLink className='px-2 nav-item' to='/' style={({isActive}) => { return isActive ? {color: '#d3d3d3'} : {} }}>
                                 Home
                             </NavLink>
-                            <NavLink className='px-2 nav-item' to='about' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                            <NavLink className='px-2 nav-item' to='about' style={({isActive}) => { return isActive ? {color: '#d3d3d3'} : {} }}>
                                 About
                             </NavLink>
-                            <NavLink className='px-2 nav-item' to='contact' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                            <NavLink className='px-2 nav-item' to='contact' style={({isActive}) => { return isActive ? {color: '#d3d3d3'} : {} }}>
                                 Contact
                             </NavLink>
-                            <NavLink className='px-2 nav-item' to='reviews' style={({isActive}) => { return isActive ? {color: '#0a58ca'} : {} }}>
+                            <NavLink className='px-2 nav-item' to='reviews' style={({isActive}) => { return isActive ? {color: '#d3d3d3'} : {} }}>
                                 Reviews
                             </NavLink>
                             {user && (
-                                <NavDropdown className='nav-title nav-item' title="Admin">
+                                <NavDropdown className='nav-item' title="Admin">
                                     <NavLink className='nav-item nav-item-dropdown' to='adminReviews'>My Reviews</NavLink>
                                     <NavLink className='nav-item nav-item-dropdown' to='createReview'>Create Review</NavLink>
                                     <NavDropdown.Divider />
