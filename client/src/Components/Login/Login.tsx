@@ -66,6 +66,11 @@ const onSubmit: SubmitHandler<Inputs> = async (data) => {
                             </Col>
                         </Row>
                         <Row>
+                            <Col xs={5}>
+                                <Link to='/forgotPassword'>Forgot Password?</Link>                            
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col xs={12}>
                                 <Button type='submit' className='btn-secondary' disabled={isLoading}>Login</Button>
                             </Col>

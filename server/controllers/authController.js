@@ -72,7 +72,7 @@ exports.login_post = async (req, res) => {
 exports.forgotPassword = async (req, res, next) => {
   // Send Email to email provided but first check if user exists
     const { email } = req.body;
-    console.log('email', email)
+    console.log('made it to the controller email', email)
     
     try {
         console.log('we made it to try')

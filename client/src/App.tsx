@@ -18,6 +18,9 @@ import {CreateReview} from './Components/Reviews/CreateReview';
 import {Reviews} from './Components/Reviews/Reviews'
 import {AdminReviews} from './Components/Reviews/AdminReviews'
 
+//modals
+import { ForgotPasswordModal } from './Modals/ForgotPasswordModal';
+
 //hooks
 import {useAuthContext} from './Hooks/useAuthContext'
 
@@ -38,6 +41,7 @@ function App() {
             <Route path='reviews' element={<Reviews />}/>
             <Route path='adminReviews' element= {!user ? <Signup /> : <AdminReviews />} />
             <Route path='createReview' element={!user ? <Signup /> : <CreateReview/>} />
+            <Route path='forgotPassword' element={<ForgotPasswordModal />} />
             <Route path='*' element={<NotFound />}/>
         </Routes>
       </BrowserRouter>
