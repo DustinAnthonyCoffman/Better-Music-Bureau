@@ -1,6 +1,7 @@
 //components
 import {Card, Row, Col, Button, Form} from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 //hooks
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -15,7 +16,9 @@ import { Inputs } from '../Interfaces/interfaces'
 export const ForgotPasswordModal = () => {
 
   const {resetPassword} = useForgotPassword()
-
+  
+  const navigate = useNavigate();
+  
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
   const schema = yup.object().shape({
@@ -27,6 +30,7 @@ export const ForgotPasswordModal = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
       const email: string = data.email
       await resetPassword(email)
+      navigate('/')
   } 
     return (
       <div className='forgotPassword'>
