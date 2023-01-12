@@ -4,6 +4,7 @@ import {useState} from 'react'
 
 //components
 import {Col, Button, Row, Image} from 'react-bootstrap'
+import {Link} from  'react-router-dom'
 
 //auth
 import {useAuthContext} from '../../Hooks/useAuthContext'
@@ -44,12 +45,15 @@ export const Review = (props: ReviewI) => {
       {deleteModal ? <DeleteReviewModal _id={_id} title={title} setDeleteModal={setDeleteModal} /> : null }
       {!editModal && !deleteModal ? 
         <div className="">
+          <Link to={'reviews/' + _id}>
             <Image 
-              src={`data:${reviewImage.contentType};base64,${reviewImage.imageBase64}`} 
-              alt='Review Image' 
-              className='review-image' 
-              onClick={() => setReviewDetailsModal(true)} 
-              />
+                src={`data:${reviewImage.contentType};base64,${reviewImage.imageBase64}`} 
+                alt='Review Image' 
+                className='review-image' 
+                onClick={() => setReviewDetailsModal(true)} 
+                />
+          </Link>
+
           <Row>
             <Col className='my-2 artist'>{title}</Col>
           </Row>

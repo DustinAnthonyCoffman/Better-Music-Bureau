@@ -16,6 +16,7 @@ import {Login} from './Components/Login/Login'
 import {Signup} from './Components/Signup/Signup'
 import {CreateReview} from './Components/Reviews/CreateReview';
 import {Reviews} from './Components/Reviews/Reviews'
+import {Review} from './Components/Reviews/Review'
 import {AdminReviews} from './Components/Reviews/AdminReviews'
 
 //modals

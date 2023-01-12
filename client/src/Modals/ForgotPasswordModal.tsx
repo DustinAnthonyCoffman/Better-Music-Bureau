@@ -55,7 +55,6 @@ export const ForgotPasswordModal = () => {
             </Card>
           </Col>
         </Row>
-
-    </div>
+      </div>
   )
 }

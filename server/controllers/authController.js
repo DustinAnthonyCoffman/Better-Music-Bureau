@@ -72,15 +72,12 @@ exports.login_post = async (req, res) => {
 exports.forgotPassword = async (req, res, next) => {
   // Send Email to email provided but first check if user exists
     const { email } = req.body;
-    console.log('made it to the controller email', email)
     
     try {
-        console.log('we made it to try')
         const user = await User.findOne({ email });
         
         if (!user) {
-        console.log('user does not exist')
-        return next(new ErrorResponse("No email could not be sent", 404));
+            return next(new ErrorResponse("No email could not be sent", 404));
     }
 
     // Reset Token Gen and add to database hashed (private) version of token
@@ -100,7 +97,6 @@ exports.forgotPassword = async (req, res, next) => {
     `;
 
     try {
-        console.log('inside sendEmail')
         await sendEmail({
             to: user.email,
             subject: "Password Reset Request",
@@ -109,13 +105,6 @@ exports.forgotPassword = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: "Email Sent" });
     } catch (err) {
-        console.log('are we in the catch block?????');
-        console.log('are we in the catch block?????');
-        console.log('are we in the catch block?????');
-        console.log('are we in the catch block?????');
-        console.log('are we in the catch block?????');
-        console.log('are we in the catch block?????');
-        console.log(err);
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
 

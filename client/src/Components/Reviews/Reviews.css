@@ -4,6 +4,10 @@
     object-fit: contain;   
 }
 
+.review-image:hover {
+    cursor: pointer;
+}
+
 .admin-button {
     min-width: 5em;
     max-width: 4em;
